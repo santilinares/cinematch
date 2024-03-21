@@ -64,12 +64,12 @@ public class UserController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<User> replacePost(@PathVariable long id, @RequestBody User newUser) {
-        User post = users.findById(id);
-        if (post != null) {
+    public ResponseEntity<User> replaceUser(@PathVariable long id, @RequestBody User newUser) {
+        User user = users.findById(id);
+        if (user != null) {
             newUser.setId(id);
             users.save(newUser);
-            return ResponseEntity.ok(post);
+            return ResponseEntity.ok(user);
         } else {
             return ResponseEntity.notFound().build();
         }

@@ -23,7 +23,7 @@ public class Film {
     }
 
     public Film(String title, int duration, int year, String synopsis) {
-        super();
+        super(); 
         this.title = title;
         this.duration = duration;
         this.year = year;
