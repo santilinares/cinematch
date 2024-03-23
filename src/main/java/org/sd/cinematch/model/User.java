@@ -1,11 +1,9 @@
 package org.sd.cinematch.model;
 
-import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.Column;
-
+import jakarta.persistence.Entity;
 @Entity
 public class User {
     
@@ -13,7 +11,6 @@ public class User {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
-    @Column(name = "name")
     private String name;
     private String email;
     private String password;
@@ -23,7 +20,6 @@ public class User {
     public User(String name, String email, String password) {
 
         super();
-        
         this.name = name;
         this.email = email;
         this.password = password;
