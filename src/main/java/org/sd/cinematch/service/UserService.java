@@ -6,7 +6,9 @@ import java.util.concurrent.atomic.AtomicLong;
 
 import java.util.Collection;
 import org.sd.cinematch.model.User;
+import org.springframework.stereotype.Service;
 
+@Service
 public class UserService {
     private ConcurrentMap<Long, User> users = new ConcurrentHashMap<>();
     private AtomicLong nextId = new AtomicLong(1);
