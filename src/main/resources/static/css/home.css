@@ -3,3 +3,27 @@ body {
     background-color: #fff;
     min-height: 100vh;
   }
+
+  .carousel-inner {
+    text-align: center;
+    display: flex;
+  }
+  
+  .carousel-item {
+    text-align: center;
+    flex: 0 0 90%; 
+  }
+  
+  .carousel-item img {
+    text-align: center;
+    width: 100%;
+    height: auto;
+    margin-left: 85%;
+    margin-top: 50%; 
+    display: block;
+}
+
+.carousel-control-prev, .carousel-control-next {
+  text-align: center;
+  margin-top: 0;
+}
