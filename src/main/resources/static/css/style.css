@@ -95,7 +95,7 @@ body {
 
 .progress-bar {
     display: flex;
-    gap: .25rem;
+    gap: .25rem;    
 }
 
 .progress-item {

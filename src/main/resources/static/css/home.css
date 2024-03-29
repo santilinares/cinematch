@@ -11,8 +11,9 @@
 
 body {
     margin: 0;
-    background-color: #333;
+    background-color: #1c1c1c;
     color: white;
+    font-family: "Poppins", sans-serif;   
 }
 
 .container {
@@ -90,23 +91,29 @@ body {
 
 .title {
     font-size: 2rem;
-    margin: 0
+    margin: 0;
 }
 
 .progress-bar {
     display: flex;
+    flex-direction: row;
     gap: .25rem;
 }
 
 .progress-item {
     flex: 0 0 1.5rem;
     min-width: 1.5rem;
-    height: .5rem;
+    height: .5rem !important;
     background-color: rgba(255, 255, 255, .5);
 }
 
 .progress-item.active {
     background-color: rgba(255, 255, 255, .9);
+}
+
+.presentation > video{
+  aspect-ratio: 16/9;
+  position: relative;
 }
 
 @media (max-width: 1000px) {
