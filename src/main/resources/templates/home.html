@@ -25,69 +25,85 @@
   <script src="/src/main/resources/static/js/home.js" defer></script>
 </head>
 
-<main>
-</main>
 
-<footer>
-</footer>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <div class="container">
-      <a class="navbar-brand" href="/src/main/resources/templates/home.html">
-        <img src="/src/main/resources/images/cinematch_logo_trimmed.png" alt="Cinematch_logo" width="180" height="39">
-      </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Movies</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">TV Series</a>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Category
-            </a>
-            <ul class="dropdown-menu">
-              <li><a class="dropdown-item" href="#">Action</a></li>
-              <li><a class="dropdown-item" href="#">Another action</a></li>
-              <li>
-                <hr class="dropdown-divider">
+  <div class="hero">
+    <div class="overlay">
+      <nav class="navbar fixed-top navbar-expand-sm navbar-dark">
+        <div class="container">
+          <a class="navbar-brand" href="/src/main/resources/templates/home.html">
+            <img src="/src/main/resources/images/cinematch_logo_trimmed.png" alt="Cinematch_logo" width="180"
+              height="39">
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarScroll">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
               </li>
-              <li><a class="dropdown-item" href="#">Something else here</a></li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Movies</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">TV Series</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  Category
+                </a>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li>
+                    <hr class="dropdown-divider">
+                  </li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" aria-disabled="true">Watchlist</a>
+              </li>
             </ul>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" aria-disabled="true">Watchlist</a>
-          </li>
-        </ul>
-        <ul class="navbar-nav ms-auto">
-          <li>
-            <a href="/src/main/resources/templates/login.html">
-              <button type="button" class="btn btn-outline-warning me-2">Log in</button>
-            </a>
-          </li>
-          <li>
-            <a href="/src/main/resources/templates/signup.html">
-              <button type="button" class="btn btn-outline-light">Sign up</button>
-            </a>
-          </li>
-        </ul>
+            <ul class="navbar-nav ms-auto">
+              <li>
+                <a href="/src/main/resources/templates/login.html">
+                  <button type="button" class="btn btn-outline-warning me-2">Log in</button>
+                </a>
+              </li>
+              <li>
+                <a href="/src/main/resources/templates/signup.html">
+                  <button type="button" class="btn btn-outline-light">Sign up</button>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <div class="content">
+        <!-- <h3>Enjoy cinema!</h3>
+        <form class="d-flex" role="search">
+          <input class="form-control w-75 me-0" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success w-25" type="submit">Search</button> -->
+        </form>
       </div>
     </div>
-  </nav>
+  </div>
 
-  <!--   <div class="presentation">
-    <video src="/src/main/resources/images/Loki_solo_video.webm" autoplay loop></video>
-  </div> -->
+  <div class="platform-row">
+    <img
+      src="https://images.ctfassets.net/y2ske730sjqp/1aONibCke6niZhgPxuiilC/2c401b05a07288746ddf3bd3943fbc76/BrandAssets_Logos_01-Wordmark.jpg?w=940"
+      alt="netflix">
+    <img src="https://static.skyassets.com/contentstack/assets/bltdc2476c7b6b194dd/blt022cad0177b1ad92/61fa6a108520e07d80fce5d7/SkyShowtimeMAIN.jpg" alt="skyshowtime">
+    <img src="https://www.logo.wine/a/logo/Disney%2B/Disney%2B-White-Dark-Background-Logo.wine.svg" alt="disney_plus">
+    <img src="https://www.newscaststudio.com/wp-content/uploads/2019/10/new-hbo-max-logo-design.jpg" alt="hbo_max">
+    <img src="https://www.apple.com/v/apple-tv-plus/ah/images/meta/apple-tv__e7aqjl2rqzau_og.png?202403130524" alt="apple_tv_plus">
+  </div>
 
   <div class="row">
     <div class="header">
@@ -133,9 +149,9 @@
         <img src="https://wallpapers.com/images/featured/peaky-blinders-mf0te5aaoy07nn99.jpg">
         <img src="https://ntvb.tmsimg.com/assets/p16645155_v_h8_ae.jpg?w=960&h=540">
         <img
-        src="https://klein-sites.s3.amazonaws.com/sites/53/2022/02/04144645/0702A17D-F9C0-4FEE-BED4-DDEEE83260B5.png">
+          src="https://klein-sites.s3.amazonaws.com/sites/53/2022/02/04144645/0702A17D-F9C0-4FEE-BED4-DDEEE83260B5.png">
         <img
-        src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiowsisUkr0FR_s-1GlkpWaryMazXnB1CPG8mVqnkX2_6K3DoQTIMZj81pWDROFPSoWLM5jb4Acd53VdS3J8uZE21vSxjWRduByWr8OHguNZlnoCczUouqp57CSO4XW2VqpsfpVJRxNCbUz/s1600/8+apellidos.jpg">
+          src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiowsisUkr0FR_s-1GlkpWaryMazXnB1CPG8mVqnkX2_6K3DoQTIMZj81pWDROFPSoWLM5jb4Acd53VdS3J8uZE21vSxjWRduByWr8OHguNZlnoCczUouqp57CSO4XW2VqpsfpVJRxNCbUz/s1600/8+apellidos.jpg">
         <img src="https://ntvb.tmsimg.com/assets/p19575003_b_h8_aa.jpg?w=960&h=540">
         <img src="https://www.barbie-themovie.com/images/share.jpg">
         <img src="https://ntvb.tmsimg.com/assets/p10980706_v_h10_as.jpg?w=1280&h=720">
@@ -149,6 +165,61 @@
       </button>
     </div>
   </div>
+  <div class="container">
+    <div class="row mb-2">
+      <div class="col-md-6">
+        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <div class="col p-4 d-flex flex-column position-static">
+            <strong class="d-inline-block mb-2 text-primary">Action and Suspense</strong>
+            <h3 class="mb-0">The Beekeper</h3>
+            <div class="mb-1 text-body-secondary">Nov 12</div>
+            <p class="card-text mb-auto">This is a wider card with supporting text below as a natural lead-in to
+              additional content.</p>
+            <a href="#" class="icon-link gap-1 icon-link-hover stretched-link">
+              Continue reading
+              <svg class="bi">
+                <use xlink:href="#chevron-right" />
+              </svg>
+            </a>
+          </div>
+          <div class="col-auto d-none d-lg-block">
+            <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img"
+              aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+              <title>Placeholder</title>
+              <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"
+                dy=".3em">Thumbnail</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <div class="col p-4 d-flex flex-column position-static">
+            <strong class="d-inline-block mb-2 text-success">Thriller</strong>
+            <h3 class="mb-0">Post title</h3>
+            <div class="mb-1 text-body-secondary">Nov 11</div>
+            <p class="mb-auto">This is a wider card with supporting text below as a natural lead-in to additional
+              content.</p>
+            <a href="#" class="icon-link gap-1 icon-link-hover stretched-link">
+              Continue reading
+              <svg class="bi">
+                <use xlink:href="#chevron-right" />
+              </svg>
+            </a>
+          </div>
+          <div class="col-auto d-none d-lg-block">
+            <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img"
+              aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false">
+              <title>Placeholder</title>
+              <rect width="100%" height="100%" fill="#55595c" /><text x="50%" y="50%" fill="#eceeef"
+                dy=".3em">Thumbnail</text>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="row">
     <div class="header">
       <h3 class="title">Suspense</h3>
