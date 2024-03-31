@@ -171,6 +171,16 @@ body {
   border-radius: 1.5rem;
 }
 
+.thumbnail>img {
+  position:relative;
+  top:0;
+  left:0;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 2/3;
+  object-fit: cover;
+}
+
 @media (max-width: 1000px) {
   .slider {
     --items-per-screen: 4;
