@@ -19,8 +19,7 @@ public class Film {
     private int duration;
     private int year;
 
-    public Film() {
-    }
+    public Film() {}
 
     public Film(String title, int duration, int year, String synopsis) {
         super(); 
