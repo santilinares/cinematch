@@ -1,72 +1,194 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Poppins', sans-serif;
-  font-size: 18px;
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
 }
 
-.navbar {
-  background-color: black;
+:root {
+  --handle-size: 3rem;
+  --img-gap: .25rem;
+}
+
+body {
+  overflow-x: hidden;
+  background-color: #1c1c1c;
+  color: white;
+  font-family: "Poppins", sans-serif;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.slider {
+  --items-per-screen: 6;
+  --slider-index: 0;
+  display: flex;
+  margin: 0 var(--img-gap);
+  transform: translateX(calc(var(--slider-index) * -100%));
+  transition: transform 250ms ease-in-out;
+}
+
+.slider>img {
+  flex: 0 0 calc(100% / var(--items-per-screen));
+  max-width: calc(100% / var(--items-per-screen));
+  aspect-ratio: 16/9;
+  padding: var(--img-gap);
+  border-radius: 1rem;
+}
+
+.handle {
+  border: none;
+  border-radius: 1rem;
+  flex-grow: 0;
+  flex-shrink: 0;
+  width: var(--handle-size);
+  background-color: rgb(0, 0, 0, .25);
+  z-index: 10;
+  margin: var(--img-gap) 0;
+  padding: 0 .5rem;
+  cursor: pointer;
+  font-size: 5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  line-height: 0;
+  transition: background-color 150ms ease-in-out;
+}
+
+.left-handle {
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.right-handle {
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.handle:hover,
+.handle:focus {
+  background-color: rgba(255, 255, 255, .5);
+}
+
+.text {
+  transition: transform 150ms ease-in-out;
+}
+
+.handle:hover .text,
+.handle:focus .text {
+  transform: scale(1.2);
+}
+
+.row {
+  margin-top: .75rem;
+}
+
+.header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
-  width: 100%; 
-  position: fixed; 
-  top: 0;
-  z-index: 1000;
+  padding: 0 calc(var(--img-gap) * 2 + var(--handle-size));
 }
 
-.navbar-logo img {
-  width: 100px; 
+.title {
+  font-size: 2rem;
+  margin: 0;
 }
 
-.navbar-menu {
+.progress-bar {
   display: flex;
-  flex: 1;
+  flex-direction: row;
+  gap: .25rem;
+}
+
+.progress-item {
+  flex: 0 0 1.5rem;
+  min-width: 1.5rem;
+  height: .5rem !important;
+  background-color: rgba(255, 255, 255, .5);
+}
+
+.progress-item.active {
+  background-color: rgba(255, 255, 255, .9);
+}
+
+.hero {
+  width: 100vw;
+  height: 60vh;
+  position: relative;
+  overflow: hidden;
+  background-image: url(/src/main/resources/images/bg_photo.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;    
+}
+
+.overlay {
+  position:absolute;
+  top:0;
+  left:0;
+  width: 100%;
+  height: 100%;
+  background: rgba(12, 3, 51, 0.3);
+  background-color: (rgba(12, 3, 51, 0.3), rgba(12, 3, 51, 0.3));
+}
+
+.content {
+  width: 100vw;
+  height:fit-content;
+  position: relative;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items:center;
   justify-content: center;
 }
 
-.navbar-menu a {
-  color: white;
-  text-decoration: none;
-  margin: 0 15px;
-  transition: color 0.3s; 
+
+.navbar {
+  transition: all .5s;
 }
 
-.navbar-menu a:hover {
-  color: #f0e68c; 
+.navbar-scrolled {
+  background-color: black;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, .15);
 }
 
-.navbar-menu a.active {
-  color: #fde937; 
-}
-
-.page-title {
-  padding: 10px 20px;
-  text-align: left;
-}
-
-.carousel-inner {
-  text-align: center;
+.platform-row {
   display: flex;
+  justify-content: center;
+  overflow: hidden;
+  margin: 0 var(--handle-size); 
 }
 
-.carousel-item {
-  text-align: center;
-  flex: 0 0 90%; 
+.platform-row>img{
+  flex: 0 0 20%;
+  max-width: 20%;
+  aspect-ratio: 16/9;
+  padding: 1rem;
+  border-radius: 1.5rem;
 }
 
-.carousel-item img {
-  text-align: center;
+.thumbnail>img {
+  position:relative;
+  top:0;
+  left:0;
   width: 100%;
   height: auto;
-  margin-left: 85%;
-  margin-top: 50%; 
-  display: block;
+  aspect-ratio: 2/3;
+  object-fit: cover;
 }
 
-.carousel-control-prev, .carousel-control-next {
-  text-align: center;
-  margin-top: 0;
+@media (max-width: 1000px) {
+  .slider {
+    --items-per-screen: 4;
+  }
+}
+
+@media (max-width: 500px) {
+  .slider {
+    --items-per-screen: 2;
+  }
 }
