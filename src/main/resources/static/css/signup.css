@@ -163,4 +163,6 @@ body {
   color: #919aa3;
 }
 
-/*# sourceMappingURL=login.css.map */
+.login-card-title {
+  color: #F26F00;
+}
