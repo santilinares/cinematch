@@ -27,15 +27,15 @@ body {
     color: white;
     text-decoration: none;
     margin: 0 15px;
-    transition: color 0.3s; /* Transición de color */
+    transition: color 0.3s; 
 }
 
 .navbar-menu a:hover {
-    color: #807c7c; /* Cambio de color al pasar el ratón por encima */
+    color: #f0e68c; 
 }
 
 .navbar-menu a.active {
-    color: #807c7c;
+    color: #fde937;
 }
 
 .search-icon {
@@ -48,7 +48,7 @@ body {
 }
 
 .page-title {
-    padding: 10px 20px; /* Modificado el relleno */
+    padding: 10px 20px; 
     text-align: left;
 }
 

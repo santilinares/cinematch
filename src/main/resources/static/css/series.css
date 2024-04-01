@@ -31,11 +31,11 @@ body {
 }
 
 .navbar-menu a:hover {
-    color: #807c7c; 
+    color: #f0e68c; 
 }
 
 .navbar-menu a.active {
-    color: #807c7c;
+    color: #fde937;
 }
 
 .search-icon {
