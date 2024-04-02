@@ -1,6 +1,6 @@
 package org.sd.cinematch.controller;
 
-import java.net.URI;
+/* import java.net.URI;
 import java.util.Collection;
 
 
@@ -17,13 +17,13 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 
 import org.sd.cinematch.model.Platform;
-import org.sd.cinematch.service.PlatformService;
+import org.sd.cinematch.service.PlatformService; */
 
-@RestController
-@RequestMapping("/platform")
+/* @RestController
+@RequestMapping("/platform") */
 public class PlatformController {
 
-    private PlatformService platforms;
+    /* private PlatformService platforms;
 
     public PlatformController(PlatformService plataforms) {
         this.platforms = plataforms;
@@ -76,4 +76,4 @@ public class PlatformController {
     }
 
 
-}
+ */}

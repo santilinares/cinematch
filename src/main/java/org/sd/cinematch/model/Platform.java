@@ -1,15 +1,15 @@
 package org.sd.cinematch.model;
 
-import java.util.List;
+/* import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-@Entity
+import jakarta.persistence.Id; */
+/* @Entity */
 public class Platform {
 
-    @Id
+    /* @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
@@ -52,5 +52,5 @@ public class Platform {
         this.films = films;
     }
 
-
+ */
 }

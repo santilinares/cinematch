@@ -23,6 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
 })
 
 
+
 const throttleProgressBar = throttle(() => {
   document.querySelectorAll(".progress-bar").forEach(calculateProgressBar)
 }, 250)
