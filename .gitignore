@@ -34,3 +34,5 @@ build/
 
 ### Node Modules - Bootstrap ###
 node_modules/
+src/main/resources/application.properties
+pom.xml

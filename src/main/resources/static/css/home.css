@@ -120,7 +120,7 @@ body {
   height: 60vh;
   position: relative;
   overflow: hidden;
-  background-image: url(/src/main/resources/images/bg_photo.jpg);
+  background-image: url(/images/bg_photo.jpg);
   background-repeat: no-repeat;
   background-size: cover;    
 }
@@ -160,15 +160,38 @@ body {
   display: flex;
   justify-content: center;
   overflow: hidden;
-  margin: 0 var(--handle-size); 
+  margin: 0 var(--handle-size);   
 }
 
-.platform-row>img{
+.platform-image {
   flex: 0 0 20%;
   max-width: 20%;
+  padding: 1em;
+  color: #3d3b3b;  
+  border: 0px;
+  border: 4px solid; /* Add a transparent border */
+  border-color: transparent;
+  transition: transform 1s, border 1s;
+  background-color: transparent;
+}
+
+
+.platform-image>img{  
+  max-width: 100%;
   aspect-ratio: 16/9;
-  padding: 1rem;
-  border-radius: 1.5rem;
+  border-radius: 0.5rem;
+  box-shadow: 4px 4px 5px;
+} 
+
+.platform-image :hover {
+  transform: scale(1.1);   
+  border: 3px solid;
+  border-color: whitesmoke;
+}
+
+.thumbnail{
+  max-width: 100%;
+  height: auto;
 }
 
 .thumbnail>img {
@@ -177,8 +200,13 @@ body {
   left:0;
   width: 100%;
   height: auto;
-  aspect-ratio: 2/3;
+  aspect-ratio: 2/3;  
   object-fit: cover;
+}
+
+.text-container {
+  max-height: 100%;
+  overflow:hidden;
 }
 
 @media (max-width: 1000px) {

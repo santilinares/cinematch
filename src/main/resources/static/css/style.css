@@ -28,7 +28,7 @@ body {
     height: 100vh;
     position: relative;
     overflow: hidden;
-    background-image: url(/src/main/resources/images/bg_photo.jpg);
+    background-image: url(/images/bg_photo.jpg);
     background-repeat: no-repeat;
     background-size: cover;    
 }
