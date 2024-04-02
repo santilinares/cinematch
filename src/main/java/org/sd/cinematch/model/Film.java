@@ -1,5 +1,6 @@
 package org.sd.cinematch.model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -12,13 +13,28 @@ public class Film {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
+    @Column(nullable = false)
     private String title;
+    
+    @Column(nullable = false)
     private String genre;
+    
+    @Column(nullable = false)
     private String actors;
+    
+    @Column(nullable = false)
     private String director;
+    
+    @Column(nullable = false)
     private String synopsis;
+    
+    @Column(nullable = false)
     private int recommendedAge;
+    
+    @Column(nullable = false)
     private int duration;
+    
+    @Column(nullable = false)
     private int year;
 
     public Film() {}

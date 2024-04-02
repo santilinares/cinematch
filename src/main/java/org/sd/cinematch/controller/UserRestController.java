@@ -20,7 +20,7 @@ import org.sd.cinematch.model.User;
 import org.sd.cinematch.service.UserService;
 
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/user")
 public class UserRestController {
 
     private UserService userService;
@@ -76,16 +76,17 @@ public class UserRestController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<User> replaceUser(@PathVariable long id, @RequestBody User newUser) {
-        User user = userService.findById(id);
+    public ResponseEntity<Object> replaceUserById(@PathVariable String id, @RequestBody User newUser) {
+        long userId = Long.parseLong(id);
+        User user = userService.findById(userId);
         if (user != null) {
-            newUser.setId(id);
+            newUser.setId(userId);
             userService.save(newUser);
-            return ResponseEntity.ok(user);
+            return ResponseEntity.ok().body("Completed 200 OK. User with ID " + id + " has been replaced succesfully");
         } else {
             return ResponseEntity.notFound().build();
         }
-    }
+    }    
 
     @PatchMapping("/{id}")
     public ResponseEntity<User> updateUser(@PathVariable long id, @RequestBody User updateUser) {

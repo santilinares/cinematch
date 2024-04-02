@@ -17,6 +17,7 @@ public class UserService {
         save(new User("Santi", "santilinares@gmail.com", "1234"));
         save(new User("Mireya", "mireyaa23@gmail.com", "4323"));
         save(new User("Frascuelo", "elfrascu23@gmail.com", "2368"));
+        save(new User("4", "4", "4"));
     }
 
     public Collection<User> findAll(){

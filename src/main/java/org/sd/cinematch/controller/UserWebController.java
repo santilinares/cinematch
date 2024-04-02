@@ -31,7 +31,7 @@ public class UserWebController {
     // Redireccionar a profile.html para reemplazar un usuario
     @GetMapping("/replace")
     public String showReplacePage() {
-        return "admin";
+        return "replaceuser";
     }
 
     // Redireccionar a update.html para actualizar parcialmente un usuario

@@ -1,24 +1,25 @@
 package org.sd.cinematch.model;
 
-/* import java.util.List;
+import java.util.ArrayList;
+import java.util.List;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id; */
-/* @Entity */
+import jakarta.persistence.Id; 
+@Entity 
 public class Platform {
 
-    /* @Id
+    @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     
     private String name;
-    private List<Film> films;
+    private ArrayList<Film> films;
 
     public Platform(){}
     
-    public Platform(String name, List<Film> films) {
+    public Platform(String name, ArrayList<Film> films) {
         super();
         this.name = name;
         this.films = films;
@@ -48,9 +49,9 @@ public class Platform {
     }
 
 
-    public void setFilms(List<Film> films) {
+    public void setFilms(ArrayList<Film> films) {
         this.films = films;
     }
 
- */
+ 
 }
