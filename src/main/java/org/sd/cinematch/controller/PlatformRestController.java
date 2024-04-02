@@ -1,12 +1,12 @@
 package org.sd.cinematch.controller;
 
-/* import java.net.URI;
+import java.net.URI;
 import java.util.Collection;
-
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -15,17 +15,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-
 import org.sd.cinematch.model.Platform;
-import org.sd.cinematch.service.PlatformService; */
+import org.sd.cinematch.service.PlatformService;
 
-/* @RestController
-@RequestMapping("/platform") */
-public class PlatformController {
+@RestController
+@RequestMapping("/platform")
+public class PlatformRestController {
 
-    /* private PlatformService platforms;
+    private PlatformService platforms;
 
-    public PlatformController(PlatformService plataforms) {
+    public PlatformRestController(PlatformService plataforms) {
         this.platforms = plataforms;
     }
 
@@ -45,7 +44,7 @@ public class PlatformController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<Platform> createPlatform(@RequestBody Platform platform) {        
+    public ResponseEntity<Platform> createPlatform(@RequestBody Platform platform) {
         platforms.save(platform);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(platform.getId())
                 .toUri();
@@ -53,9 +52,9 @@ public class PlatformController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Platform> deletePlatform(@PathVariable long id){
+    public ResponseEntity<Platform> deletePlatform(@PathVariable long id) {
         Platform platform = platforms.findById(id);
-          if (platform != null) {
+        if (platform != null) {
             platforms.deleteById(id);
             return ResponseEntity.ok(platform);
         } else {
@@ -75,5 +74,21 @@ public class PlatformController {
         }
     }
 
+    @PatchMapping("/{id}")
+    public ResponseEntity<Platform> updatePlatform(@PathVariable long id, @RequestBody Platform updatedPlatform) {
+        Platform platform = platforms.findById(id);
+        if (platform != null) {
+            if (updatedPlatform.getName() != null) {
+                platform.setName(updatedPlatform.getName());
+            }
+            if (updatedPlatform.getFilms() != null) {
+                platform.setFilms(updatedPlatform.getFilms());
+            }
+            platforms.save(platform);
+            return ResponseEntity.ok(platform);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 
- */}
+}
