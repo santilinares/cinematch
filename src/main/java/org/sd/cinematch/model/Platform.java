@@ -1,5 +1,51 @@
 package org.sd.cinematch.model;
 
-public enum Platform {
-    
+import java.util.*;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
+public class Platform {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+    private String name;
+    private ArrayList<Film> films;
+
+    public Platform() {
+    }
+
+    public Platform(String name, ArrayList<Film> films) {
+        super();
+        this.name = name;
+        this.films = films;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public ArrayList<Film> getFilms() {
+        return films;
+    }
+
+    public void setFilms(ArrayList<Film> films) {
+        this.films = films;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
 }

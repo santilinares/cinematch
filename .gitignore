@@ -31,3 +31,8 @@ build/
 
 ### VS Code ###
 .vscode/
+
+### Node Modules - Bootstrap ###
+node_modules/
+src/main/resources/application.properties
+pom.xml
