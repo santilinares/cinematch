@@ -4,7 +4,8 @@ import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.Collection;
-import org.sd.cinematch.model.Film;
+
+import org.sd.cinematch.entity.Film;
 import org.springframework.stereotype.Service;
 
 @Service

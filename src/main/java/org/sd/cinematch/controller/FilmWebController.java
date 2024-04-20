@@ -1,6 +1,6 @@
 package org.sd.cinematch.controller;
 
-import org.sd.cinematch.model.Film;
+import org.sd.cinematch.entity.Film;
 import org.sd.cinematch.service.FilmService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

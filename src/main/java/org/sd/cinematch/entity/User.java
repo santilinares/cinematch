@@ -1,20 +1,33 @@
-package org.sd.cinematch.model;
+package org.sd.cinematch.entity;
 
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Entity;
+import java.util.List;
+
+import jakarta.persistence.*;
+
 @Entity
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id")
     private Long id = null;
-    
+
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "email")
     private String email;
+
+    @Column(name = "password")
     private String password;
 
-    public User() {}
+    /* Un usuario puede añadir varias peliculas */
+    @ManyToMany
+    @JoinTable(name = "user_film", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "film_id"))
+    private List<Film> addedFilms;
+
+    public User() {
+    }
 
     public User(String name, String email, String password) {
 
@@ -55,8 +68,5 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
-
-    
-
 
 }
