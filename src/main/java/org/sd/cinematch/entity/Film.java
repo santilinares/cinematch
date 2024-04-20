@@ -1,30 +1,59 @@
-package org.sd.cinematch.model;
+package org.sd.cinematch.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import java.util.List;
+
+import jakarta.persistence.*;
+import lombok.Data;
 
 @Entity
+@Table(name = "films")
+@Data
 public class Film {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+
+    @Column(name = "id")
     private Long id;
-    
+
+    @Column(name = "titles")
     private String title;
+
+    @Column(name = "genres")
     private String genre;
+
+    @Column(name = "actors")
     private String actors;
+
+    @Column(name = "director")
     private String director;
+
+    @Column(name = "synopsis")
     private String synopsis;
+
+    @Column(name = "recommended ages")
     private int recommendedAge;
+
+    @Column(name = "durations")
     private int duration;
+
+    @Column(name = "years")
     private int year;
 
-    public Film() {}
+    /* Una pelicula solo puede estar contenida en una plataforma */
+    @ManyToOne
+    @JoinColumn(name = "platform_id")
+    private Platform platform;
+
+    /* Una pelicula puede ser añadida por varios usuarios */
+    @ManyToMany(mappedBy = "favoriteFilms")
+    private List<User> users;
+
+    public Film() {
+    }
 
     public Film(String title, int duration, int year, String synopsis) {
-        super(); 
+        super();
         this.title = title;
         this.duration = duration;
         this.year = year;

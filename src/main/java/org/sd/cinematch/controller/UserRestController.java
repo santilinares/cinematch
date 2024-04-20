@@ -15,8 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
-import org.sd.cinematch.model.User;
+import org.sd.cinematch.entity.User;
 import org.sd.cinematch.service.UserService;
 
 @RestController
