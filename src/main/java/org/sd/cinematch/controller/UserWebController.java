@@ -25,7 +25,7 @@ public class UserWebController {
     // Redireccionar a welcome.html para eliminar un usuario
     @GetMapping("/remove")
     public String showRemovePage() {
-        return "admin";
+        return "index";
     }
 
     // Redireccionar a profile.html para reemplazar un usuario

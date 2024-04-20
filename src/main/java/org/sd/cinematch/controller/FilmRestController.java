@@ -3,7 +3,6 @@ package org.sd.cinematch.controller;
 import java.net.URI;
 import java.util.Collection;
 
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
-
 
 import org.sd.cinematch.model.Film;
 import org.sd.cinematch.service.FilmService;
@@ -45,16 +43,17 @@ public class FilmRestController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<Film> createFilm(@RequestBody Film film) {        
+    public ResponseEntity<Film> createFilm(@RequestBody Film film) {
         films.save(film);
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(film.getId()).toUri();
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(film.getId())
+                .toUri();
         return ResponseEntity.created(location).body(film);
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Film> deleteFilm(@PathVariable long id){
+    public ResponseEntity<Film> deleteFilm(@PathVariable long id) {
         Film film = films.findById(id);
-          if (film != null) {
+        if (film != null) {
             films.deleteById(id);
             return ResponseEntity.ok(film);
         } else {
@@ -73,6 +72,5 @@ public class FilmRestController {
             return ResponseEntity.notFound().build();
         }
     }
-
 
 }
