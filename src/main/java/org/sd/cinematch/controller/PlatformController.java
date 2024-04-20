@@ -1,6 +1,6 @@
 package org.sd.cinematch.controller;
 
-/* import java.net.URI;
+import java.net.URI;
 import java.util.Collection;
 
 
@@ -15,19 +15,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import lombok.AllArgsConstructor;
 
-import org.sd.cinematch.model.Platform;
-import org.sd.cinematch.service.PlatformService; */
+import org.sd.cinematch.entity.Platform;
+import org.sd.cinematch.service.PlatformService; 
 
-/* @RestController
-@RequestMapping("/platform") */
+@RestController
+@AllArgsConstructor
+@RequestMapping("/platform") 
 public class PlatformController {
 
-    /* private PlatformService platforms;
+    private final PlatformService platforms;
 
-    public PlatformController(PlatformService plataforms) {
-        this.platforms = plataforms;
-    }
 
     @GetMapping("/")
     public Collection<Platform> getPlatform() {
@@ -35,7 +34,7 @@ public class PlatformController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Platform> getPlatform(@PathVariable long id) {
+    public ResponseEntity<Platform> getPlatform(@PathVariable final long id) {
         Platform platform = platforms.findById(id);
         if (platform != null) {
             return ResponseEntity.ok(platform);
@@ -45,7 +44,7 @@ public class PlatformController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<Platform> createPlatform(@RequestBody Platform platform) {        
+    public ResponseEntity<Platform> createPlatform(@RequestBody final Platform platform) {        
         platforms.save(platform);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(platform.getId())
                 .toUri();
@@ -53,7 +52,7 @@ public class PlatformController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Platform> deletePlatform(@PathVariable long id){
+    public ResponseEntity<Platform> deletePlatform(@PathVariable final long id){
         Platform platform = platforms.findById(id);
           if (platform != null) {
             platforms.deleteById(id);
@@ -64,7 +63,7 @@ public class PlatformController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Platform> replacePlatform(@PathVariable long id, @RequestBody Platform newPlatform) {
+    public ResponseEntity<Platform> replacePlatform(@PathVariable final long id, @RequestBody final Platform newPlatform) {
         Platform platform = platforms.findById(id);
         if (platform != null) {
             newPlatform.setId(id);
@@ -76,4 +75,4 @@ public class PlatformController {
     }
 
 
- */}
+}

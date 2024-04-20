@@ -4,7 +4,6 @@ import java.util.List;
 
 import jakarta.persistence.*;
 
-import org.sd.cinematch.repository.FilmRepository;
 
 @Entity
 @Table(name = "platforms")
@@ -12,10 +11,8 @@ public class Platform {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
-    private Long id = null;
+    private Long id;
 
-    @Column(name = "name")
     private String name;
 
     /* Una plataforma puede contener muchas peliculas */
@@ -46,4 +43,10 @@ public class Platform {
         this.name = name;
     }
 
+    @Override
+    public String toString() {
+        return "Platform [id=" + id + ", name=" + name + ", films=" + films + "]";
+    }
+ 
+    
 }
