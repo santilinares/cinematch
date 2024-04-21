@@ -15,18 +15,18 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import lombok.AllArgsConstructor;
+
 import org.sd.cinematch.entity.User;
 import org.sd.cinematch.service.UserService;
 
 @RestController
-@RequestMapping("/user")
+@AllArgsConstructor
+@RequestMapping("/api/user")
 public class UserRestController {
 
-    private UserService userService;
-
-    public UserRestController(UserService userService) {
-        this.userService = userService;
-    }
+    private final UserService userService;
 
     @GetMapping("/")
     public ResponseEntity<Collection<User>> getUsers() {
@@ -35,7 +35,7 @@ public class UserRestController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable long id) {
+    public ResponseEntity<User> getUserById(@PathVariable final long id) {
         User user = userService.findById(id);
         if (user != null) {
             return ResponseEntity.ok(user);
@@ -45,14 +45,13 @@ public class UserRestController {
     }
 
     @GetMapping("/getuser")
-    public ResponseEntity<User> getUserByEmailAndPassword(@RequestParam String email,
-            @RequestParam String password) {
-        User user = userService.findByEmailAndPassword(email, password);
-        if (user != null) {
-            return ResponseEntity.ok(user);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
+    public ResponseEntity<User> getUserByEmailAndPassword(
+        @RequestParam String email, 
+        @RequestParam String password
+    ) {
+        return ResponseEntity.ok(
+            userService.findByEmailAndPassword(email, password)
+        );
     }
 
     @PostMapping("/createuser")
@@ -105,6 +104,15 @@ public class UserRestController {
         } else {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<Void> login(
+        @RequestParam(name = "email") final String email,
+        @RequestParam(name = "password") final String password
+    ) {
+        userService.login(email, password);
+        return ResponseEntity.ok().build();
     }
 
 }

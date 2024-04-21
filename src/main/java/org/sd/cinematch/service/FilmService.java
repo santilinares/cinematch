@@ -1,38 +1,38 @@
 package org.sd.cinematch.service;
 
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
-import java.util.concurrent.atomic.AtomicLong;
-import java.util.Collection;
+import java.util.Optional;
+import java.util.List;
 
 import org.sd.cinematch.entity.Film;
+import org.sd.cinematch.repository.FilmRepository;
 import org.springframework.stereotype.Service;
 
+import lombok.AllArgsConstructor;
+
 @Service
+@AllArgsConstructor
 public class FilmService {
-    private ConcurrentMap<Long, Film> films = new ConcurrentHashMap<>();
-    private AtomicLong nextId = new AtomicLong(1);
 
-    public FilmService(){}
+    private final FilmRepository filmRepository;
 
-    public Collection<Film> findAll(){
-        return films.values();
+    public List<Film> findAll(){
+        return filmRepository.findAll();
     }
 
-    public Film findById(long id){
-        return films.get(id);
-    }
-
-    public void save(Film film) {
-        if(film.getId() == null || film.getId() == 0) {
-            long id = nextId.getAndIncrement();
-            film.setId(id);            
+    public Film findById(final long id){
+        Optional<Film> optionalPlatform = filmRepository.findById(id);
+        if (optionalPlatform.isPresent()) {
+         return optionalPlatform.get();
+        } else {
+         throw new RuntimeException("Film not found");
         }
-
-        this.films.put(film.getId(), film);
     }
 
-    public void deleteById(long id){
-        this.films.remove(id);
+    public void save(final Film film) {
+        filmRepository.save(film);           
+    }
+
+    public void deleteById(final long id){
+        filmRepository.deleteById(id);
     }
 }

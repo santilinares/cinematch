@@ -3,7 +3,6 @@ package org.sd.cinematch.controller;
 import java.net.URI;
 import java.util.Collection;
 
-
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,19 +14,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import lombok.AllArgsConstructor;
 
 import org.sd.cinematch.entity.Film;
 import org.sd.cinematch.service.FilmService;
 
 @RestController
-@RequestMapping("/film")
+@AllArgsConstructor
+@RequestMapping("/api/film")
 public class FilmRestController {
 
-    private FilmService films;
-
-    public FilmRestController(FilmService films) {
-        this.films = films;
-    }
+    private final FilmService films;
 
     @GetMapping("/")
     public Collection<Film> getFilms() {
@@ -35,7 +32,7 @@ public class FilmRestController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Film> getFilm(@PathVariable long id) {
+    public ResponseEntity<Film> getFilm(@PathVariable final long id) {
         Film film = films.findById(id);
         if (film != null) {
             return ResponseEntity.ok(film);
@@ -45,7 +42,7 @@ public class FilmRestController {
     }
 
     @PostMapping("/")
-    public ResponseEntity<Film> createFilm(@RequestBody Film film) {
+    public ResponseEntity<Film> createFilm(@RequestBody final Film film) {        
         films.save(film);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(film.getId())
                 .toUri();
@@ -53,7 +50,7 @@ public class FilmRestController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Film> deleteFilm(@PathVariable long id) {
+    public ResponseEntity<Film> deleteFilm(@PathVariable final long id){
         Film film = films.findById(id);
         if (film != null) {
             films.deleteById(id);
@@ -64,7 +61,7 @@ public class FilmRestController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Film> replaceFilm(@PathVariable long id, @RequestBody Film newFilm) {
+    public ResponseEntity<Film> replaceFilm(@PathVariable final long id, @RequestBody final Film newFilm) {
         Film film = films.findById(id);
         if (film != null) {
             newFilm.setId(id);

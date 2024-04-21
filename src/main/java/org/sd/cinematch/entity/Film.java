@@ -3,15 +3,18 @@ package org.sd.cinematch.entity;
 import java.util.List;
 
 import jakarta.persistence.*;
-import lombok.Data;
+import lombok.*;
+import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "films")
 @Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Table(name = "films")
 public class Film {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
 
     @Column(name = "id")
     private Long id;
@@ -22,17 +25,17 @@ public class Film {
     @Column(name = "genres")
     private String genre;
 
+    @Column(name = "synopsis")
+    private String synopsis;
+    
+    @Column(name = "recommended_ages")
+    private int recommendedAge;
+
     @Column(name = "actors")
     private String actors;
 
     @Column(name = "director")
     private String director;
-
-    @Column(name = "synopsis")
-    private String synopsis;
-
-    @Column(name = "recommended ages")
-    private int recommendedAge;
 
     @Column(name = "durations")
     private int duration;
@@ -44,9 +47,9 @@ public class Film {
     @ManyToOne
     @JoinColumn(name = "platform_id")
     private Platform platform;
-/* 
-    /* Una pelicula puede ser añadida por varios usuarios 
-    @ManyToMany(mappedBy = "favoriteFilms")
+
+    /* Una película puede ser añadida por varios usuarios */
+    @ManyToMany(mappedBy = "addedFilms")
     private List<User> users;
  */
     public Film() {

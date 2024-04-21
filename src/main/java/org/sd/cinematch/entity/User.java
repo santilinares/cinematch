@@ -10,7 +10,7 @@ public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id")
-    private Long id = null;
+    private Long id;
 
     @Column(name = "name")
     private String name;
@@ -35,6 +35,14 @@ public class User {
         this.name = name;
         this.email = email;
         this.password = password;
+    }
+
+    public List<Film> getAddedFilms() {
+        return addedFilms;
+    }
+
+    public void setAddedFilms(List<Film> addedFilms) {
+        this.addedFilms = addedFilms;
     }
 
     public Long getId() {
@@ -68,5 +76,13 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    @Override
+    public String toString() {
+        return "User [id=" + id + ", name=" + name + ", email=" + email + ", password=" + password + ", addedFilms="
+                + addedFilms + "]";
+    }
+
+    
 
 }
