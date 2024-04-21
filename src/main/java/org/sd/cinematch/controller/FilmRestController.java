@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 
-import org.sd.cinematch.model.Film;
+import org.sd.cinematch.entity.Film;
 import org.sd.cinematch.service.FilmService;
 
 @RestController

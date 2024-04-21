@@ -44,11 +44,11 @@ public class Film {
     @ManyToOne
     @JoinColumn(name = "platform_id")
     private Platform platform;
-
-    /* Una pelicula puede ser añadida por varios usuarios */
+/* 
+    /* Una pelicula puede ser añadida por varios usuarios 
     @ManyToMany(mappedBy = "favoriteFilms")
     private List<User> users;
-
+ */
     public Film() {
     }
 

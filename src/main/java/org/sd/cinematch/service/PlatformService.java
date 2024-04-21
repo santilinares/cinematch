@@ -5,7 +5,7 @@ import java.util.concurrent.ConcurrentMap;
 import java.util.concurrent.atomic.AtomicLong;
 
 import java.util.Collection;
-import org.sd.cinematch.model.Platform;
+import org.sd.cinematch.entity.Platform;
 import org.springframework.stereotype.Service;
 
 @Service

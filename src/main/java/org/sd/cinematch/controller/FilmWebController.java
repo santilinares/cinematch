@@ -6,6 +6,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 public class FilmWebController {
@@ -48,4 +50,28 @@ public class FilmWebController {
     public String createFilm() {
         return "createfilm";
     }
+
+    @GetMapping("/films")
+    public String films() {
+        return "films";        
+    }
+
+    @GetMapping("/tvseries")
+    public String tvSeries() {
+        return "series";        
+    }
+    @GetMapping("/watchlist")
+    public String watchlist() {
+        return "watchlist";        
+    }
+    @GetMapping("/search")
+    public String search() {
+        return "search";        
+    }
+    //Eliminar
+    @GetMapping("/film")
+    public String film() {
+        return "film";        
+    }
+    
 }

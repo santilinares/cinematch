@@ -56,7 +56,7 @@ public class UserRestController {
     }
 
     @PostMapping("/createuser")
-    public ResponseEntity<User> createUser(User user) {
+    public ResponseEntity<User> createUser(@RequestBody User user) {
         userService.save(user);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(user.getId())
                 .toUri();
