@@ -25,17 +25,17 @@ public class Film {
     @Column(name = "genres")
     private String genre;
 
+    @Column(name = "synopsis")
+    private String synopsis;
+    
+    @Column(name = "recommended_ages")
+    private int recommendedAge;
+
     @Column(name = "actors")
     private String actors;
 
     @Column(name = "director")
     private String director;
-
-    @Column(name = "synopsis")
-    private String synopsis;
-
-    @Column(name = "recommended_ages")
-    private int recommendedAge;
 
     @Column(name = "durations")
     private int duration;
