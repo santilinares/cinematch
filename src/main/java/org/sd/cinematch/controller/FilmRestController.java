@@ -20,7 +20,7 @@ import org.sd.cinematch.entity.Film;
 import org.sd.cinematch.service.FilmService;
 
 @RestController
-@RequestMapping("/film")
+@RequestMapping("/api/film")
 public class FilmRestController {
 
     private FilmService films;
