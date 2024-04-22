@@ -25,7 +25,7 @@ public class Film {
 
     @Column(name = "synopsis")
     private String synopsis;
-    
+
     @Column(name = "recommended_ages")
     private int recommendedAge;
 
