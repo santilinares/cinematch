@@ -1,6 +1,7 @@
 package org.sd.cinematch.service;
 
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicLong;
 import java.util.List;
 
 import org.sd.cinematch.entity.Film;
@@ -10,10 +11,13 @@ import org.springframework.stereotype.Service;
 import lombok.AllArgsConstructor;
 
 @Service
-@AllArgsConstructor
 public class FilmService {
 
     private final FilmRepository filmRepository;
+    public FilmService(FilmRepository filmRepository) {
+        this.filmRepository = filmRepository;
+    }
+    private AtomicLong nextId = new AtomicLong(1);
 
     public List<Film> findAll(){
         return filmRepository.findAll();
@@ -28,8 +32,13 @@ public class FilmService {
         }
     }
 
-    public void save(final Film film) {
-        filmRepository.save(film);           
+    public void save(Film film) {
+
+        if (film.getId()== null || film.getId() == 0){
+            long id = nextId.getAndIncrement();
+            film.setId(id);
+        }
+        filmRepository.save(film);
     }
 
     public void deleteById(final long id){

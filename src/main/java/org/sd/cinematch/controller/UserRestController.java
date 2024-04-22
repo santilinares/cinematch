@@ -63,7 +63,7 @@ public class UserRestController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<User> deleteUser(@PathVariable long id) {
+    public ResponseEntity<User> deletePlatform(@PathVariable final long id) {
         User user = userService.findById(id);
         if (user != null) {
             userService.deleteById(id);

@@ -3,6 +3,7 @@ package org.sd.cinematch.service;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicLong;
 
 import org.sd.cinematch.entity.User;
 import org.sd.cinematch.repository.UserRepository;
@@ -11,10 +12,15 @@ import org.springframework.stereotype.Service;
 import lombok.AllArgsConstructor;
 
 @Service
-@AllArgsConstructor
 public class UserService {
 
     private final UserRepository userRepository;
+    
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    private AtomicLong nextId = new AtomicLong(1);
 
     public List<User> findAll(){
         return userRepository.findAll();
@@ -39,6 +45,11 @@ public class UserService {
     }
 
     public void save(User user) {
+
+        if (user.getId()== null || user.getId() == 0){
+            long id = nextId.getAndIncrement();
+            user.setId(id);
+        }
         userRepository.save(user);
     }
 
