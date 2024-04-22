@@ -27,7 +27,7 @@ public class Film {
 
     @Column(name = "synopsis")
     private String synopsis;
-    
+
     @Column(name = "recommended_ages")
     private int recommendedAge;
 
@@ -51,9 +51,6 @@ public class Film {
     /* Una película puede ser añadida por varios usuarios */
     @ManyToMany(mappedBy = "addedFilms")
     private List<User> users;
- */
-    public Film() {
-    }
 
     public Film(String title, int duration, int year, String synopsis) {
         super();
