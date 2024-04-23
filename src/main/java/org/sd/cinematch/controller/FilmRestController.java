@@ -6,6 +6,7 @@ import java.util.Collection;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -67,6 +68,39 @@ public class FilmRestController {
             newFilm.setId(id);
             films.save(newFilm);
             return ResponseEntity.ok(film);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+    
+    @PatchMapping("/{id}")
+    public ResponseEntity<Film> updateFilm(@PathVariable long id, @RequestBody Film updateFilm) {
+        Film existingFilm = films.findById(id);
+        if (existingFilm != null) {
+            if (updateFilm.getTitle() != null) {
+                existingFilm.setTitle(updateFilm.getTitle());
+            }
+            if (updateFilm.getGenre() != null) {
+                existingFilm.setGenre(updateFilm.getGenre());
+            }
+            if (updateFilm.getActors() != null) {
+                existingFilm.setActors(updateFilm.getActors());
+            }
+            if (updateFilm.getDirector() != null) {
+                existingFilm.setDirector(updateFilm.getDirector());
+            }
+            if (updateFilm.getSynopsis() != null) {
+                existingFilm.setSynopsis(updateFilm.getSynopsis());
+            }
+            if (updateFilm.getDuration() != 0) {
+                existingFilm.setDuration(updateFilm.getDuration());
+            }
+            if (updateFilm.getYear() != 0) {
+                existingFilm.setYear(updateFilm.getYear());
+            }
+
+            films.save(existingFilm);
+            return ResponseEntity.ok(existingFilm);
         } else {
             return ResponseEntity.notFound().build();
         }

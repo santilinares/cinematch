@@ -10,13 +10,11 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "films")
+@Table(name = "db-film")
 public class Film {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-
-    @Column(name = "id")
     private Long id;
 
     @Column(name = "titles")

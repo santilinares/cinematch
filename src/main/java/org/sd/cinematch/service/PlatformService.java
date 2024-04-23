@@ -17,6 +17,7 @@ public class PlatformService {
         this.platformRepository = platformRepository;
     }
     private AtomicLong nextId = new AtomicLong(1);
+    
     public List<Platform> findAll(){
         return platformRepository.findAll();
     }
