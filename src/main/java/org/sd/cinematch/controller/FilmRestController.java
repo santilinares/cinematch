@@ -61,7 +61,7 @@ public class FilmRestController {
         }
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("/api/film")
     public ResponseEntity<Film> replaceFilm(@PathVariable final long id, @RequestBody final Film newFilm) {
         Film film = films.findById(id);
         if (film != null) {

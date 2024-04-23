@@ -19,6 +19,7 @@ public class FilmWebController {
 
     @GetMapping("/")
     public String homeFilms(Model model) {
+        model.addAttribute("films", filmService.findAll());
         return "home";
     }
 
