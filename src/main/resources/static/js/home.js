@@ -114,3 +114,30 @@ function throttle(cb, delay = 1000) {
     setTimeout(timeoutFunc, delay)
   }
 }
+
+document.getElementById("login").addEventListener("click", function(event) {
+  event.preventDefault(); // Prevent the default form submission
+
+  // Get form data
+  var formData = new FormData(document.getElementById("loginForm"));
+
+  // Make a POST request to the server
+  fetch("/api/user/getuser", {
+    method: "POST",
+    body: formData
+  })
+  .then(function(response) {
+    if (response.ok) {
+      // Response status is 200, show the alert
+      alert("Login successful!");
+    } else {
+      // Response status is not 200, handle the error
+      alert("Email or password are not correct.");
+    }
+  })
+  .catch(function(error) {
+    // An error occurred during the fetch
+    console.error("Error:", error);
+  });
+});
+

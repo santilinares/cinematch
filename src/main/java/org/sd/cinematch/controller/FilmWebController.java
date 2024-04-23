@@ -72,5 +72,9 @@ public class FilmWebController {
     public String film() {
         return "film";        
     }
+    @GetMapping("/manage")
+    public String manage() {
+        return "manage";        
+    }
     
 }

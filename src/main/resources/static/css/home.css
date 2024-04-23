@@ -304,6 +304,10 @@ body {
   overflow: hidden;
 }
 
+.film-details {
+  margin-bottom: 4px;
+}
+
 
 @media (max-width: 1000px) {
   .slider {
