@@ -57,11 +57,19 @@ body {
   border: 1px solid #d5dae2;
   border-radius: 15px;
   padding: 15px 25px;
-  margin-bottom: 10px;
   min-height: 45px;
   font-size: 13px;
-  line-height: 15;
   font-weight: normal;
+}
+
+.form-select {
+  border-radius: 15px;
+}
+
+.select-label {
+  font-size: 13px;
+  min-height: 45px;
+  padding-left: 25px;
 }
 
 .login-card .form-control::-webkit-input-placeholder {
