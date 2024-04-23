@@ -88,26 +88,11 @@
         <div class="row">
             <div class="container">
                 <div class="slider-watchlist">
+                    {{#films}}
                     <button class="slider-item">
-                        <img class="img-slider" src="https://ntvb.tmsimg.com/assets/p24439818_v_h10_aa.jpg?w=1280&h=720">
-                    </button>
-                    <button class="slider-item">
-                        <img class="img-slider" src="https://ntvb.tmsimg.com/assets/p16645155_v_h8_ae.jpg?w=960&h=540">
-                    </button>
-                    <button class="slider-item">
-                        <img class="img-slider" src="https://www.barbie-themovie.com/images/share.jpg">
-                    </button>
-                    <button class="slider-item">
-                        <img class="img-slider"
-                            src="https://klein-sites.s3.amazonaws.com/sites/53/2022/02/04144645/0702A17D-F9C0-4FEE-BED4-DDEEE83260B5.png">
-                    </button>
-                    <button class="slider-item">
-                        <img class="img-slider"
-                            src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiowsisUkr0FR_s-1GlkpWaryMazXnB1CPG8mVqnkX2_6K3DoQTIMZj81pWDROFPSoWLM5jb4Acd53VdS3J8uZE21vSxjWRduByWr8OHguNZlnoCczUouqp57CSO4XW2VqpsfpVJRxNCbUz/s1600/8+apellidos.jpg">
-                    </button>
-                    <button class="slider-item">
-                        <img class="img-slider" src="https://ntvb.tmsimg.com/assets/p19575003_b_h8_aa.jpg?w=960&h=540">
-                    </button>
+                        <img class="img-slider" src={{image-url}} alt="film cover">
+                    </button>                    
+                    {{/films}}
                 </div>
             </div>
         </div>

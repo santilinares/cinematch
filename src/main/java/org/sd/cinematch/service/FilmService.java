@@ -8,8 +8,6 @@ import org.sd.cinematch.entity.Film;
 import org.sd.cinematch.repository.FilmRepository;
 import org.springframework.stereotype.Service;
 
-import lombok.AllArgsConstructor;
-
 @Service
 public class FilmService {
 

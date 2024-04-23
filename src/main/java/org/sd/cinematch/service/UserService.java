@@ -9,8 +9,6 @@ import org.sd.cinematch.entity.User;
 import org.sd.cinematch.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
-import lombok.AllArgsConstructor;
-
 @Service
 public class UserService {
 
