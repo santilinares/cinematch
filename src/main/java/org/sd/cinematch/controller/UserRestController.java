@@ -63,7 +63,7 @@ public class UserRestController {
 
     }
 
-    @PostMapping("/createuser")
+    /*@PostMapping("/createuser")
     public String createUser(@RequestParam("name") String name, @RequestParam("email") String email, 
                 @RequestParam("password") String password, RedirectAttributes redirectAttributes) {
                 User newUser = userService.save(new User(name, email, password));
@@ -75,6 +75,14 @@ public class UserRestController {
                     return "redirect:/signup";
                 }
 
+    }*/
+
+    @PostMapping("/createuser")
+    public ResponseEntity<User> createUser(@RequestBody final User user) {        
+        userService.save(user);
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(user.getId())
+                .toUri();
+        return ResponseEntity.created(location).body(user);
     }
 
     @DeleteMapping("/{id}")

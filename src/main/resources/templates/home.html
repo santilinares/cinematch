@@ -120,11 +120,32 @@
         <div class="text">&#8249;</div>
       </button>
       <div class="slider">
-        {{#films}}
+        {{#drama}}
         <button class="slider-item">
-          <img class="img-slider" src={{cover}} alt="film cover">
+          <img class="img-slider" src="{{ cover }}" alt="film cover">
         </button>
-        {{/films}}
+        {{/drama}}
+      </div>
+      <button class="handle right-handle">
+        <div class="text">&#8250;</div>
+      </button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="header">
+      <h3 class="title">Romance</h3>
+      <div class="progress-bar"></div>
+    </div>
+    <div class="container">
+      <button class="handle left-handle">
+        <div class="text">&#8249;</div>
+      </button>
+      <div class="slider">
+        {{#romance}}
+        <button class="slider-item">
+          <img class="img-slider" src="{{ cover }}" alt="film cover">
+        </button>
+        {{/romance}}
       </div>
       <button class="handle right-handle">
         <div class="text">&#8250;</div>
@@ -141,11 +162,11 @@
         <div class="text">&#8249;</div>
       </button>
       <div class="slider">
-        {{#films}}
+        {{#comedy}}
         <button class="slider-item">
-          <img class="img-slider" src="{{ image-url }}" alt="film cover">
+          <img class="img-slider" src="{{ cover }}" alt="film cover">
         </button>
-        {{/films}}
+        {{/comedy}}
       </div>
       <button class="handle right-handle">
         <div class="text">&#8250;</div>
@@ -212,15 +233,57 @@
         <div class="text">&#8249;</div>
       </button>
       <div class="slider">
-        {{#films}}
+        {{#suspense}}
         <button class="slider-item">
-          <img class="img-slider" src={{image-url}} alt="film cover">
+          <img class="img-slider" src="{{ cover }}" alt="film cover">
         </button>
-        {{/films}}
+        {{/suspense}}
       </div>
       <button class="handle right-handle">
         <div class="text">&#8250;</div>
       </button>
+    </div>
+    <div class="row">
+      <div class="header">
+        <h3 class="title">Science Fiction</h3>
+        <div class="progress-bar"></div>
+      </div>
+      <div class="container">
+        <button class="handle left-handle">
+          <div class="text">&#8249;</div>
+        </button>
+        <div class="slider">
+          {{#science_fiction}}
+          <button class="slider-item">
+            <img class="img-slider" src="{{ cover }}" alt="film cover">
+          </button>
+          {{/science_fiction}}
+        </div>
+        <button class="handle right-handle">
+          <div class="text">&#8250;</div>
+        </button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="header">
+        <h3 class="title">Horror</h3>
+        <div class="progress-bar"></div>
+      </div>
+      <div class="container">
+        <button class="handle left-handle">
+          <div class="text">&#8249;</div>
+        </button>
+        <div class="slider">
+          {{#horror}}
+          <button class="slider-item">
+            <img class="img-slider" src="{{ cover }}"alt="film cover">
+          </button>
+          {{/horror}}
+        </div>
+        <button class="handle right-handle">
+          <div class="text">&#8250;</div>
+        </button>
+      </div>
     </div>
   </div>
 

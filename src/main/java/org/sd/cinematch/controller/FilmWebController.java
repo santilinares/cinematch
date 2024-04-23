@@ -19,7 +19,14 @@ public class FilmWebController {
 
     @GetMapping("/")
     public String homeFilms(Model model) {
-        model.addAttribute("films", filmService.findAll());
+        model.addAttribute("suspense", filmService.findByGenre("Suspense"));
+        model.addAttribute("comedy", filmService.findByGenre("Comedy"));
+        model.addAttribute("science_fiction", filmService.findByGenre("Science Fiction"));
+        model.addAttribute("drama", filmService.findByGenre("Drama"));
+        model.addAttribute("documentary", filmService.findByGenre("Documentary"));
+        model.addAttribute("action", filmService.findByGenre("Action"));
+        model.addAttribute("romance", filmService.findByGenre("Romance"));
+        model.addAttribute("horror", filmService.findByGenre("Horror"));
         return "home";
     }
 

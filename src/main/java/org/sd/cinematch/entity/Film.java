@@ -49,7 +49,7 @@ public class Film {
 
     /* Una pelicula solo puede estar contenida en una plataforma */
     @ManyToOne
-    @JoinColumn(name = "platform_id")
+    @JoinColumn(name = "platform_id", referencedColumnName = "id")
     private Platform platform;
 
     /* Una película puede ser añadida por varios usuarios */
