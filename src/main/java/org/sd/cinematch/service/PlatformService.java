@@ -8,7 +8,6 @@ import org.sd.cinematch.entity.Platform;
 import org.sd.cinematch.repository.PlatformRepository;
 import org.springframework.stereotype.Service;
 
-import lombok.AllArgsConstructor; 
 @Service 
 public class PlatformService {
 

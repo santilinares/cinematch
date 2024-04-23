@@ -81,7 +81,7 @@
     <div class="container">
         <div class="row mb-2 m-5">
             <div class="col md-7">
-                <iframe class="iframe" width="560" height="315" src="https://www.youtube.com/embed/Ruyl8_PT_y8?si=0eyIaAJ18RaHuiXY"
+                <iframe class="iframe" width="560" height="315" src={{video-url}}
                     title="YouTube video player"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
@@ -89,25 +89,22 @@
             <div class="col md-5 p-2 pe-5 d-flex flex-column position-static">
                 <div class="row d-flex justify-content-center align-items-center">
                     <div class="col md-7">
-                        <h3 id="title">Peaky Blinders</h3>
+                        <h3 id="film-title">{{title}}</h3>
                     </div>
                     <div class="col md-5">
-                        <a type="button" href="/" class="btn btn-outline-light p-2 m-2 btn-home" aria-label="Home">Add to Watchlist</a>
+                        <a type="button" href="/watchlist" class="btn btn-outline-light p-2 m-2 btn-home" aria-label="Home">Add to Watchlist</a>
                     </div>
                 </div>
-                <p class="film-details" id="year">2022</p>
-                <p class="film-details" id="synopsis">A gangster family epic set in 1900s England, centering on a gang who sew razor blades
-                    in the peaks of their caps, and their fierce boss Tommy Shelby. Thomas Shelby and his brothers
-                    return to Birmingham after serving in the British Army during WWI. Shelby and his gang, the Peaky
-                    Blinders, control the city of Birmingham.</p>
+                <p class="film-details" id="year">{{year}}</p>
+                <p class="film-details" id="synopsis">{{synopsis}}</p>
                     <div class="row d-flex justify-content-center align-items-center">
                         <div class="col md-6">
                             <p class="film-details" id="platform">Platform: Netflix</p>
-                            <p class="film-details" id="genre">Genres: Suspense</p>
+                            <p class="film-details" id="genre">Genre: {{genre}}</p>
                         </div>
                         <div class="col md-6">
-                            <p class="film-details" id="actors">Cast: </p>
-                            <p class="film-details" id="director">Director: </p>
+                            <p class="film-details" id="actors">Cast: {{actors}}</p>
+                            <p class="film-details" id="director">Director: {{director}}</p>
                         </div>
                     </div>
 
