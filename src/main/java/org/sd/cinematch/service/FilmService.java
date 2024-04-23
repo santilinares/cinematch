@@ -19,7 +19,7 @@ public class FilmService {
 
     public List<Film> findAll(){
         return filmRepository.findAll();
-    }
+    }   
 
     public Film findById(final long id){
         Optional<Film> optionalPlatform = filmRepository.findById(id);
