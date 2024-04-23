@@ -27,14 +27,13 @@
             <p class="text-light fst-italic z-1">Back to the Future, 1985</p>
           </div>
           <div class="col-md-7">
-            <a type="button" href="/manage" class="btn-close btn-lg pl-5 pt-5" aria-label="Close"></a>
+            <a type="button" href="/" class="btn-close btn-lg pl-5 pt-5" aria-label="Close"></a>
             <div class="card-body">
               <div class="brand-wrapper">
                 <h2 class="login-card-title fw-bold mb-0">CineMatch</h2>
               </div>
-              <p class="login-card-description">Replace a User</p>
-              <form action="/api/user/{id}" method="post">
-                <input type="hidden" name="_method" value="put">
+              <p class="login-card-description">Replace a Platform</p>
+              <form action="/api/platform/{id}" method="post">
                 <div class="form-group">
                   <label for="name" class="sr-only">Id</label>
                   <input type="text" name="id" id="id" class="form-control" placeholder="Id">
@@ -42,21 +41,12 @@
                 <div class="form-group">
                   <label for="name" class="sr-only">Name</label>
                   <input type="text" name="name" id="name" class="form-control" placeholder="Name">
-                </div>
-                <div class="form-group">
-                  <label for="email" class="sr-only">Email</label>
-                  <input type="email" name="email" id="email" class="form-control" placeholder="Email address">
-                </div>
-                <div class="form-group">
-                  <label for="password" class="sr-only">Password</label>
-                  <input type="password" name="password" id="password" class="form-control"
-                    placeholder="Enter a Password">
-                </div>                
+                </div>            
 
                 <input name="login" id="login" class="btn btn-block login-btn mb-2" type="submit" value="Replace">
                 <button name="google-signin" id="google-signin" class="btn btn-block google-signin-btn mb-4"
                   type="button">
-                  <a href="/createfilm">Go to Create Film</a>
+                  <a href="/createplatform">Go to Create Film</a>
                 </button>
               </form>
               <nav class="login-card-footer-nav">

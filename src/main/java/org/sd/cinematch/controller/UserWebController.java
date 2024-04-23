@@ -2,7 +2,6 @@ package org.sd.cinematch.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class UserWebController {    
@@ -19,26 +18,31 @@ public class UserWebController {
         return "login";
     }
 
+    @GetMapping("/createuser")
+    public String showCreateUserForm() {
+        return "createuser";
+    }
+
     @GetMapping("/forgotpwd")
     public String showForgotPwdForm() {
         return "forgotpwd";
     }
 
     // Redireccionar a welcome.html para eliminar un usuario
-    @GetMapping("/remove")
+    @GetMapping("/deleteuser")
     public String showRemovePage() {
-        return "index";
+        return "deleteuser";
     }
 
     // Redireccionar a profile.html para reemplazar un usuario
-    @GetMapping("/replace")
+    @GetMapping("/replaceuser")
     public String showReplacePage() {
         return "replaceuser";
     }
 
     // Redireccionar a update.html para actualizar parcialmente un usuario
-    @GetMapping("/update")
+    @GetMapping("/updateuser")
     public String showUpdateForm() {
-        return "admin";
+        return "updateuser";
     }
 }
