@@ -98,6 +98,12 @@ public class FilmRestController {
             if (updateFilm.getYear() != 0) {
                 existingFilm.setYear(updateFilm.getYear());
             }
+            if(updateFilm.getCover() != null){
+                existingFilm.setCover(updateFilm.getCover());
+            }
+            if(updateFilm.getTrailer() != null){
+                existingFilm.setTrailer(updateFilm.getTrailer());
+            }
 
             films.save(existingFilm);
             return ResponseEntity.ok(existingFilm);

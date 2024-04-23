@@ -41,6 +41,12 @@ public class Film {
     @Column(name = "years")
     private int year;
 
+    @Column(name = "trailers")
+    private String trailer;
+
+    @Column(name = "covers")
+    private String cover;
+
     /* Una pelicula solo puede estar contenida en una plataforma */
     @ManyToOne
     @JoinColumn(name = "platform_id")
@@ -59,7 +65,7 @@ public class Film {
     }
 
     public Film(String title, int duration, int year, String synopsis, String genre, String actors, String director,
-            int recommendedAge) {
+            int recommendedAge, String trailer, String cover) {
         super();
     }
 
@@ -134,5 +140,22 @@ public class Film {
     public void setYear(int year) {
         this.year = year;
     }
+
+    public String getTrailer(){
+        return trailer;
+    }
+
+    public void setTrailer(){
+        this.trailer = trailer;
+    }
+
+    public String getCover(){
+        return cover;
+    }
+
+    public void setCover(){
+        this.cover = cover;
+    }
+
 
 }
