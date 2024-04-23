@@ -50,6 +50,18 @@ public class FilmWebController {
     public String createFilm() {
         return "createfilm";
     }
+    @GetMapping("/deletefilm")
+    public String deleteFilm() {
+        return "deletefilm";
+    }
+    @GetMapping("/updatefilm")
+    public String updateFilm() {
+        return "updatefilm";
+    }
+    @GetMapping("/replacefilm")
+    public String replaceFilm() {
+        return "replacefilm";
+    }
 
     @GetMapping("/films")
     public String films() {
@@ -77,5 +89,6 @@ public class FilmWebController {
     public String manage() {
         return "manage";        
     }
+
     
 }
