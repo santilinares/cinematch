@@ -3,6 +3,7 @@ package org.sd.cinematch.controller;
 import java.net.URI;
 import java.util.Collection;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import lombok.AllArgsConstructor;
@@ -44,23 +46,36 @@ public class UserRestController {
         }
     }
 
-    @GetMapping("/getuser")
-    public ResponseEntity<User> getUserByEmailAndPassword(
+    @PostMapping("/getuser")
+    public String getUserByEmailAndPassword(
         @RequestParam String email, 
-        @RequestParam String password
-    ) {
-        return ResponseEntity.ok(
-            userService.findByEmailAndPassword(email, password)
-        );
+        @RequestParam String password, RedirectAttributes redirectAttributes)
+        {
+        User user = userService.findByEmailAndPassword(email, password);
+        if(user != null){
+            //redirectAttributes.addFlashAttribute("successMessage","You have successfully logged in");
+            return "home";
+        } else{
+            //redirectAttributes.addFlashAttribute("errorMessage","You haven´t logged in");
+            return "login";
+        }
+        
+
     }
 
     @PostMapping("/createuser")
-    public ResponseEntity<User> createUser(@RequestBody User user) {
-        userService.save(user);
-        URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(user.getId())
-                .toUri();
-        return ResponseEntity.created(location).body(user);
-    }    
+    public String createUser(@RequestParam("name") String name, @RequestParam("email") String email, 
+                @RequestParam("password") String password, RedirectAttributes redirectAttributes) {
+                User newUser = userService.save(new User(name, email, password));
+                if(newUser != null){
+                    redirectAttributes.addFlashAttribute("successMessage", "You have successfully logged in");
+                    return "redirect:/login";
+                }else{
+                    redirectAttributes.addFlashAttribute("errorMessage", "You have not logged in");
+                    return "redirect:/signup";
+                }
+
+    }
 
     @DeleteMapping("/{id}")
     public ResponseEntity<User> deletePlatform(@PathVariable final long id) {

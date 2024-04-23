@@ -157,5 +157,11 @@ public class Film {
         this.cover = cover;
     }
 
-
+    @Override
+    public String toString() {
+        return "Film [id=" + id + ", title=" + title + ", genre=" + genre + ", synopsis=" + synopsis
+                + ", recommendedAge=" + recommendedAge + ", actors=" + actors + ", director=" + director + ", duration="
+                + duration + ", year=" + year + ", trailer=" + trailer + ", cover=" + cover + ", platform=" + platform
+                + "]";
+    }
 }

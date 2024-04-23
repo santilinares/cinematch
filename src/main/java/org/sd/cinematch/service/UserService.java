@@ -42,13 +42,13 @@ public class UserService {
         }
     }
 
-    public void save(User user) {
-
+    public User save(User user) {
         if (user.getId()== null || user.getId() == 0){
             long id = nextId.getAndIncrement();
             user.setId(id);
         }
         userRepository.save(user);
+        return user;
     }
 
     public void deleteById(long id){
