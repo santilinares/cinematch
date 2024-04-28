@@ -266,6 +266,27 @@
     </div>
     <div class="row">
       <div class="header">
+        <h3 class="title">Documentary</h3>
+        <div class="progress-bar"></div>
+      </div>
+      <div class="container">
+        <button class="handle left-handle">
+          <div class="text">&#8249;</div>
+        </button>
+        <div class="slider">
+          {{#documentary}}
+          <button class="slider-item">
+            <img class="img-slider" src="{{ cover }}" alt="film cover">
+          </button>
+          {{/documentary}}
+        </div>
+        <button class="handle right-handle">
+          <div class="text">&#8250;</div>
+        </button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="header">
         <h3 class="title">Horror</h3>
         <div class="progress-bar"></div>
       </div>
