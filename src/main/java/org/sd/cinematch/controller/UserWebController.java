@@ -1,10 +1,25 @@
 package org.sd.cinematch.controller;
 
+import org.sd.cinematch.service.UserService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 public class UserWebController {    
+
+    private final UserService userService;
+
+    public UserWebController(UserService userService) {
+        this.userService = userService;
+    }
+
+    @GetMapping("/watchlist/{id}")
+    public String watchlist(Model model, @PathVariable long id) {
+        model.addAttribute("watchlist", userService.findById(id).getAddedFilms());
+        return "watchlist";        
+    }
 
     // Redireccionar a signup.html para crear un nuevo usuario
     @GetMapping("/signup")

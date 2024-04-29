@@ -308,6 +308,14 @@ body {
   margin-bottom: 4px;
 }
 
+.btn-home {
+  transition: all 0.4s;
+}
+
+.btn-home:hover {
+  transform: scale(1.1);
+}
+
 
 @media (max-width: 1000px) {
   .slider {

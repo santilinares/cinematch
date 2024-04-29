@@ -115,60 +115,6 @@ function throttle(cb, delay = 1000) {
   }
 }
 
-//To show a feedback alert to the user when they try to log in
-document.getElementById("login").addEventListener("click", function(event) {
-  event.preventDefault(); // Prevent the default form submission
 
-  // Get form data
-  var formData = new FormData(document.getElementById("loginForm"));
 
-  // Make a POST request to the server
-  fetch("/api/user/getuser", {
-    method: "POST",
-    body: formData
-  })
-  .then(function(response) {
-    if (response.ok) {
-      // Response status is 200, show the alert
-      alert("Login successful!");
-    } else {
-      // Response status is not 200, handle the error
-      alert("Email or password are not correct.");
-    }
-  })
-  .catch(function(error) {
-    // An error occurred during the fetch
-    console.error("Error:", error);
-  });
-});
-
-//To allow the PUT operation for Film entity
-document.getElementById('updateFilmForm').addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent the normal submission of the form
-
-    var formData = new FormData(this);
-    var object = {};
-    formData.forEach(function(value, key) {
-        object[key] = value;
-    });
-    var json = JSON.stringify(object);
-
-    fetch('/api/film/', {
-        method: 'PUT',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: json
-    }).then(response => {
-        if (response.ok) {
-            return response.json();
-        }
-        throw new Error('Something went wrong');
-    }).then(data => {
-        console.log(data);
-        // Handle success
-    }).catch(error => {
-        console.error('Error:', error);
-    });
-});
 

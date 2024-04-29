@@ -30,7 +30,7 @@ public class FilmWebController {
         return "home";
     }
 
-    @GetMapping("/films/{id}")
+    @GetMapping("/film/{id}")
     public String showFilm(Model model, @PathVariable long id) {
 
         Film film = filmService.findById(id);
@@ -79,19 +79,12 @@ public class FilmWebController {
     public String tvSeries() {
         return "series";        
     }
-    @GetMapping("/watchlist")
-    public String watchlist() {
-        return "watchlist";        
-    }
+    
     @GetMapping("/search")
     public String search() {
         return "search";        
     }
-    //Eliminar
-    @GetMapping("/film")
-    public String film() {
-        return "film";        
-    }
+    
     @GetMapping("/manage")
     public String manage() {
         return "manage";        

@@ -5,6 +5,7 @@ import java.util.Collection;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -20,7 +21,9 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import lombok.AllArgsConstructor;
 
+import org.sd.cinematch.entity.Film;
 import org.sd.cinematch.entity.User;
+import org.sd.cinematch.service.FilmService;
 import org.sd.cinematch.service.UserService;
 
 @RestController
@@ -29,6 +32,7 @@ import org.sd.cinematch.service.UserService;
 public class UserRestController {
 
     private final UserService userService;
+    private final FilmService filmService;
 
     @GetMapping("/")
     public ResponseEntity<Collection<User>> getUsers() {
@@ -48,37 +52,19 @@ public class UserRestController {
 
     @PostMapping("/getuser")
     public String getUserByEmailAndPassword(
-        @RequestParam String email, 
-        @RequestParam String password, RedirectAttributes redirectAttributes)
-        {
+            @RequestParam String email,
+            @RequestParam String password, RedirectAttributes redirectAttributes) {
         User user = userService.findByEmailAndPassword(email, password);
-        if(user != null){
-            //redirectAttributes.addFlashAttribute("successMessage","You have successfully logged in");
+        if (user != null) {
             return "home";
-        } else{
-            //redirectAttributes.addFlashAttribute("errorMessage","You haven´t logged in");
+        } else {
             return "login";
         }
-        
 
     }
 
-    /*@PostMapping("/createuser")
-    public String createUser(@RequestParam("name") String name, @RequestParam("email") String email, 
-                @RequestParam("password") String password, RedirectAttributes redirectAttributes) {
-                User newUser = userService.save(new User(name, email, password));
-                if(newUser != null){
-                    redirectAttributes.addFlashAttribute("successMessage", "You have successfully logged in");
-                    return "redirect:/login";
-                }else{
-                    redirectAttributes.addFlashAttribute("errorMessage", "You have not logged in");
-                    return "redirect:/signup";
-                }
-
-    }*/
-
     @PostMapping("/createuser")
-    public ResponseEntity<User> createUser(@RequestBody final User user) {        
+    public ResponseEntity<User> createUser(@RequestBody final User user) {
         userService.save(user);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(user.getId())
                 .toUri();
@@ -97,17 +83,16 @@ public class UserRestController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Object> replaceUserById(@PathVariable String id, @RequestBody User newUser) {
-        long userId = Long.parseLong(id);
-        User user = userService.findById(userId);
+    public ResponseEntity<Object> replaceUserById(@PathVariable Long id, @RequestBody User newUser) {
+        User user = userService.findById(id);
         if (user != null) {
-            newUser.setId(userId);
+            newUser.setId(id);
             userService.save(newUser);
-            return ResponseEntity.ok().body("Completed 200 OK. User with ID " + id + " has been replaced succesfully");
+            return ResponseEntity.ok(user);
         } else {
             return ResponseEntity.notFound().build();
         }
-    }    
+    }
 
     @PatchMapping("/{id}")
     public ResponseEntity<User> updateUser(@PathVariable long id, @RequestBody User updateUser) {
@@ -131,11 +116,28 @@ public class UserRestController {
 
     @PostMapping("/login")
     public ResponseEntity<Void> login(
-        @RequestParam(name = "email") final String email,
-        @RequestParam(name = "password") final String password
-    ) {
+            @RequestParam(name = "email") final String email,
+            @RequestParam(name = "password") final String password) {
         userService.login(email, password);
         return ResponseEntity.ok().build();
+    }
+
+    @Transactional
+    @PatchMapping("/addfilm/{userId}/{filmId}")
+    public ResponseEntity<User> addFilmToUserWatchlist(@PathVariable Long userId, @PathVariable Long filmId) {
+        User user = userService.findById(userId);
+        Film film = filmService.findById(filmId);
+        if (user != null && film != null) {
+            if (!user.getAddedFilms().contains(film)) {
+                user.getAddedFilms().add(film);
+                userService.save(user);
+                return ResponseEntity.ok().build();
+            } else {
+                return ResponseEntity.status(HttpStatus.ALREADY_REPORTED).build();
+            }
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 
 }

@@ -2,65 +2,100 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Update Platform</title>
-    <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="\css\signup.css">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
-        rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Update Platform</title>
+  <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/css/signup.css">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    rel="stylesheet">
 </head>
 
 <body>
-    <main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
-        <div class="container">
-            <div class="card login-card">
-                <div class="row no-gutters">
-                    <div class="col-md-5 d-flex flex-column justify-content-center align-items-center">
-                        <div class="overlay z-1"></div>
-                        <img src="/images/login_photo.jpg" alt="login" class=" login-card-img z-0">
-                        <h4 class="text-light text-center z-1 px-4">"Toto, I've a feeling we're not
-                            in Kansas anymore."</h4>
-                        <p class="text-light fst-italic z-1">The Wizard of Oz, 1939</p>
-                    </div>
-                    <div class="col-md-7">
-                        <a type="button" href="/manage" class="btn-close btn-lg pl-5 pt-5" aria-label="Close"></a>
-                        <div class="card-body">
-                            <div class="brand-wrapper">
-                                <h2 class="login-card-title fw-bold mb-0">CineMatch</h2>
-                            </div>
-                            <p class="login-card-description">Update a Platform</p>
-
-                            <form action="/api/user/{id}" method="post">
-                                <div class="form-group">
-                                    <label for="id" class="sr-only">Id</label>
-                                    <input type="id" name="id" id="id" class="form-control" placeholder="Id">
-                                </div>
-                                <div class="form-group">
-                                    <label for="name" class="sr-only">Name</label>
-                                    <input type="name" name="name" id="name" class="form-control" placeholder="Name">
-                                </div>
-                                </p>
-                                <input name="update-platform" id="update-platform" class="btn btn-block login-btn mb-2"
-                                    type="button" value="Update Platform">
-                            </form>
-                            <nav class="login-card-footer-nav">
-                                <a href="#!">Terms of use.</a>
-                                <a href="#!">Privacy policy</a>
-                            </nav>
-                        </div>
-                    </div>
+  <main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
+    <div class="container">
+      <div class="card login-card">
+        <div class="row no-gutters">
+          <div class="col-md-5 d-flex flex-column justify-content-center align-items-center">
+            <div class="overlay z-1"></div>
+            <img src="/images/login_photo.jpg" alt="login" class=" login-card-img z-0">
+            <h4 class="text-light text-center z-1 px-4">"Roads? Where we're going we don't need roads."</h4>
+            <p class="text-light fst-italic z-1">Back to the Future, 1985</p>
+          </div>
+          <div class="col-md-7">
+            <a type="button" href="/" class="btn-close btn-lg pl-5 pt-5" aria-label="Close"></a>
+            <div class="card-body">
+              <div class="brand-wrapper">
+                <h2 class="login-card-title fw-bold mb-0">CineMatch</h2>
+              </div>
+              <p class="login-card-description">Update a Platform</p>
+              <form id="update-platform-form">
+                <div class="form-group">
+                  <label for="id" class="sr-only">Id</label>
+                  <input type="text" name="id" id="id" class="form-control" placeholder="Id">
                 </div>
+                <div class="form-group">
+                  <label for="name" class="sr-only">Name</label>
+                  <input type="text" name="name" id="name" class="form-control" placeholder="Name">
+                </div>
+
+                <input name="update-platform" id="update-platform" class="btn btn-block login-btn mb-2" type="button" value="update Platform">                
+              </form>
+              <nav class="login-card-footer-nav">
+                <a href="#!">Terms of use.</a>
+                <a href="#!">Privacy policy</a>
+              </nav>
             </div>
+          </div>
         </div>
-    </main>
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+      </div>
+    </div>
+  </main>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <script>
+    document.getElementById('update-platform').addEventListener('click', function () {
+        const id = document.getElementById('id').value;
+        const platformData = {
+            name: document.getElementById('name').value
+        };
+
+        // Remove empty fields to avoid unwanted updates
+        Object.keys(platformData).forEach(key => platformData[key] === '' && delete platformData[key]);
+
+        fetch(`/api/platform/${id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(platformData)
+        })
+        .then(response => {
+            if (response.ok) {
+                return response.json();
+            } else {
+                throw new Error('Failed to update platform');
+            }
+        })
+        .then(data => {
+            alert('Platform updated successfully!');
+            console.log(data);
+            setTimeout(() => {
+                window.location.href = '/'; // Redirect to the home directory
+            });
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Failed to update platform: ' + error.message);
+        });
+    });
+</script>
+
 </body>
 
 </html>

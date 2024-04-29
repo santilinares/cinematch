@@ -4,6 +4,7 @@ import java.net.URI;
 import java.util.Collection;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -42,7 +43,7 @@ public class FilmRestController {
         }
     }
 
-    @PostMapping("/")
+    @PostMapping("/createfilm")
     public ResponseEntity<Film> createFilm(@RequestBody final Film film) {        
         films.save(film);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(film.getId())
@@ -50,10 +51,11 @@ public class FilmRestController {
         return ResponseEntity.created(location).body(film);
     }
 
+    @Transactional
     @DeleteMapping("/{id}")
     public ResponseEntity<Film> deleteFilm(@PathVariable final long id){
         Film film = films.findById(id);
-        if (film != null) {
+        if (film != null) {        
             films.deleteById(id);
             return ResponseEntity.ok(film);
         } else {
@@ -61,7 +63,7 @@ public class FilmRestController {
         }
     }
 
-    @PutMapping("/api/film")
+    @PutMapping("/{id}")
     public ResponseEntity<Film> replaceFilm(@PathVariable final long id, @RequestBody final Film newFilm) {
         Film film = films.findById(id);
         if (film != null) {

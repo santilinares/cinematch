@@ -79,37 +79,40 @@
         </nav>
     </div>
     <div class="container">
+        {{#film}}
         <div class="row mb-2 m-5">
             <div class="col md-7">
-                <iframe class="iframe" width="560" height="315" src ="{{ trailer }}"
-                    title="YouTube video player"
+                <iframe class="iframe" width="560" height="315" src="{{ trailer }}" title="YouTube video player"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                     referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
             </div>
             <div class="col md-5 p-2 pe-5 d-flex flex-column position-static">
                 <div class="row d-flex justify-content-center align-items-center">
                     <div class="col md-7">
-                        <h3 id="film-title" src ="{{ title }}"></h3>
+                        <h3 id="film-title">{{ title }}</h3>
                     </div>
-                    <div class="col md-5">
-                        <a type="button" href="/watchlist" class="btn btn-outline-light p-2 m-2 btn-home" aria-label="Home">Add to Watchlist</a>
+                    <div class="col md-5 d-flex justify-content-end">
+                        <a id="add-to-watchlist-{{film.id}}" href="#" class="btn btn-outline-light p-2 m-2 btn-home"
+                            aria-label="Home">Add to Watchlist</a>
+
                     </div>
                 </div>
-                <p class="film-details" id="year" src = "{{ year }}"></p>
-                <p class="film-details" id="synopsis">"{{ synopsis }}"</p>
-                    <div class="row d-flex justify-content-center align-items-center">
-                        <div class="col md-6">
-                            <p class="film-details" id="platform">Platform: Netflix</p>
-                            Genre:<p class="film-details" id="genre" src ="{{ genre }}"> </p>
-                        </div>
-                        <div class="col md-6">
-                            Cast:<p class="film-details" id="actors" src = "{{ actors }}"></p>
-                            Director:<p class="film-details" id="director" src="{{ director }}"> </p>
-                        </div>
+                <p class="film-details" id="year">{{ year }}</p>
+                <p class="film-details" id="synopsis">{{ synopsis }}</p>
+                <div class="row d-flex justify-content-center align-items-center">
+                    <div class="col md-6">
+                        <p class="film-details" id="platform">Platform:</p>
+                        <p class="film-details" id="genre">Genre: {{ genre }}</p>
                     </div>
+                    <div class="col md-6">
+                        <p class="film-details" id="actors">Cast: {{ actors }}</p>
+                        <p class="film-details" id="director">Director: {{ director }}</p>
+                    </div>
+                </div>
 
             </div>
         </div>
+        {{/film}}
     </div>
 
     <footer class="bg-dark py-5 mt-5 fixed-bottom">
@@ -118,7 +121,38 @@
             <small class="text-dark-50">&copy; Copyright by CineMatch.</small>
         </div>
     </footer>
+    <script>
+        // Suponiendo que tienes múltiples elementos de 'Add to Watchlist'
+        document.querySelectorAll('[id^="add-to-watchlist-"]').forEach(button => {
+            button.addEventListener('click', function (event) {
+                event.preventDefault();
+                const filmId = this.id.replace('add-to-watchlist-', ''); // Extrae el ID de la película
+                addToWatchlist(filmId);
+            });
+        });
 
+        function addToWatchlist(filmId) {
+            const userId = '52'; // Debes obtener el ID de usuario actual de alguna manera segura
+            fetch(`/api/user/addfilm/${userId}/${filmId}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(response => {
+                    if (response.ok) {
+                        alert('Film added to Watchlist successfully!');
+                    } else {
+                        throw new Error('Failed to add film to Watchlist');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Failed to add film to Watchlist: ' + error.message);
+                });
+        }
+
+    </script>
 </body>
 
 </html>

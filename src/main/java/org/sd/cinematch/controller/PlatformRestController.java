@@ -22,7 +22,7 @@ import org.sd.cinematch.service.PlatformService;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping("/platform")
+@RequestMapping("/api/platform")
 public class PlatformRestController {
 
     private final PlatformService platforms;
@@ -42,7 +42,7 @@ public class PlatformRestController {
         }
     }
 
-    @PostMapping("/")
+    @PostMapping("/createplatform")
     public ResponseEntity<Platform> createPlatform(@RequestBody final Platform platform) {
         platforms.save(platform);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(platform.getId())

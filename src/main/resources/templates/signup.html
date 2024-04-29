@@ -36,7 +36,7 @@
               <p class="login-card-register-here">Already have an account? <a href="/login"
                   class="text-reset"><u>Log in
                     here</u></a></p>
-              <form action="/api/user/createuser" method="post">
+              <form id="register-form">
                 <div class="form-group">
                   <label for="name" class="sr-only">Name</label>
                   <input type="text" name="name" id="name" class="form-control" placeholder="Name">
@@ -51,7 +51,7 @@
                     placeholder="Enter a Password">
                 </div>                
 
-                <input name="login" id="login" class="btn btn-block login-btn mb-2" type="submit" value="Register">
+                <input name="register" id="register" class="btn btn-block login-btn mb-2" type="submit" value="Register">
                 <input name="google-signin" id="google-signin" class="btn btn-block google-signin-btn mb-4"
                   type="button" value="Sign in with Google">
               </form>
@@ -68,6 +68,43 @@
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <script>
+    document.getElementById("register-form").addEventListener("submit", function (event) {
+        event.preventDefault();
+        const formData = {
+            name: document.getElementById("name").value,
+            email: document.getElementById("email").value,
+            password: document.getElementById("password").value
+        };
+
+        fetch('/api/user/createuser', { // Make sure this endpoint is correct
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(formData)
+        })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    response.text().then(text => {
+                        throw new Error(text || 'Something went wrong');
+                    });
+                }
+            })
+            .then(data => {
+                alert('User registered successfully!');
+                setTimeout(() => {
+                    window.location.href = '/'; // Redirect to the home directory
+                });
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Failed to register user: ' + error.message);
+            });
+    });
+</script>
 </body>
 
 </html>

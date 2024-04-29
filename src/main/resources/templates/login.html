@@ -68,6 +68,37 @@
   <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
   <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <script>
+    //To show a feedback alert to the user when they try to log in
+    document.getElementById("login").addEventListener("click", function (event) {
+      event.preventDefault(); // Prevent the default form submission
+
+      // Get form data
+      var formData = new FormData(document.getElementById("loginForm"));
+
+      // Make a POST request to the server
+      fetch("/api/user/getuser", {
+        method: "POST",
+        body: formData
+      })
+        .then(function (response) {
+          if (response.ok) {
+            // Response status is 200, show the alert
+            alert("Login successful!");
+            setTimeout(() => {
+                    window.location.href = '/'; // Redirect to the home directory
+                });
+          } else {
+            // Response status is not 200, handle the error
+            alert("Email or password are not correct.");
+          }
+        })
+        .catch(function (error) {
+          // An error occurred during the fetch
+          console.error("Error:", error);
+        });
+    });
+  </script>
 </body>
 
 </html>

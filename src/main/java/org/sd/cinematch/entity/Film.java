@@ -2,6 +2,8 @@ package org.sd.cinematch.entity;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.NoArgsConstructor;
@@ -54,6 +56,7 @@ public class Film {
 
     /* Una película puede ser añadida por varios usuarios */
     @ManyToMany(mappedBy = "addedFilms")
+    @JsonIgnore
     private List<User> users;
 
     public Film(String title, int duration, int year, String synopsis) {
@@ -163,5 +166,93 @@ public class Film {
                 + ", recommendedAge=" + recommendedAge + ", actors=" + actors + ", director=" + director + ", duration="
                 + duration + ", year=" + year + ", trailer=" + trailer + ", cover=" + cover + ", platform=" + platform
                 + "]";
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Film other = (Film) obj;
+        if (id == null) {
+            if (other.id != null)
+                return false;
+        } else if (!id.equals(other.id))
+            return false;
+        if (title == null) {
+            if (other.title != null)
+                return false;
+        } else if (!title.equals(other.title))
+            return false;
+        if (genre == null) {
+            if (other.genre != null)
+                return false;
+        } else if (!genre.equals(other.genre))
+            return false;
+        if (synopsis == null) {
+            if (other.synopsis != null)
+                return false;
+        } else if (!synopsis.equals(other.synopsis))
+            return false;
+        if (recommendedAge != other.recommendedAge)
+            return false;
+        if (actors == null) {
+            if (other.actors != null)
+                return false;
+        } else if (!actors.equals(other.actors))
+            return false;
+        if (director == null) {
+            if (other.director != null)
+                return false;
+        } else if (!director.equals(other.director))
+            return false;
+        if (duration != other.duration)
+            return false;
+        if (year != other.year)
+            return false;
+        if (trailer == null) {
+            if (other.trailer != null)
+                return false;
+        } else if (!trailer.equals(other.trailer))
+            return false;
+        if (cover == null) {
+            if (other.cover != null)
+                return false;
+        } else if (!cover.equals(other.cover))
+            return false;
+        if (platform == null) {
+            if (other.platform != null)
+                return false;
+        } else if (!platform.equals(other.platform))
+            return false;
+        if (users == null) {
+            if (other.users != null)
+                return false;
+        } else if (!users.equals(other.users))
+            return false;
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        final int prime = 31;
+        int result = 1;
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
+        result = prime * result + ((title == null) ? 0 : title.hashCode());
+        result = prime * result + ((genre == null) ? 0 : genre.hashCode());
+        result = prime * result + ((synopsis == null) ? 0 : synopsis.hashCode());
+        result = prime * result + recommendedAge;
+        result = prime * result + ((actors == null) ? 0 : actors.hashCode());
+        result = prime * result + ((director == null) ? 0 : director.hashCode());
+        result = prime * result + duration;
+        result = prime * result + year;
+        result = prime * result + ((trailer == null) ? 0 : trailer.hashCode());
+        result = prime * result + ((cover == null) ? 0 : cover.hashCode());
+        result = prime * result + ((platform == null) ? 0 : platform.hashCode());
+        result = prime * result + ((users == null) ? 0 : users.hashCode());
+        return result;
     }
 }
