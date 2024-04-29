@@ -44,12 +44,9 @@
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/films">Movies</a>
-              </li>
+              </li>              
               <li class="nav-item">
-                <a class="nav-link" href="/tvseries">TV Series</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/watchlist">Watchlist</a>
+                <a class="nav-link" href="/watchlist/3">Watchlist</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/search">
@@ -77,11 +74,11 @@
           </div>
         </div>
       </nav>
-      <form action="" class="search-form">
+      <form action="/search" method="GET" class="search-page-form">
         <div class="search">
           <span class="search-icon material-symbols-outlined">search</span>
-          <input class="search-input" type="search" placeholder="Search">
-        </div>
+          <input class="search-input" type="search" name="title" placeholder="Search" id="search-bar">
+      </div>
       </form>
     </div>
 

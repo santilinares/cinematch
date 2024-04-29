@@ -316,6 +316,15 @@ body {
   transform: scale(1.1);
 }
 
+.added-to-watchlist {
+  background-color: #f8f9fa;
+  color:#1c1c1c
+}
+
+.added-to-watchlist:hover {
+  transform: none;
+}
+
 
 @media (max-width: 1000px) {
   .slider {

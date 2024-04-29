@@ -32,8 +32,8 @@
                     <p class="fw-bold mb-0">CineMatch</p>
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-                    aria-label="Toggle navigation">
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarScroll">
@@ -44,11 +44,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/films">Movies</a>
                         </li>
+                        
                         <li class="nav-item">
-                            <a class="nav-link" href="/tvseries">TV Series</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/watchlist">Watchlist</a>
+                            <a class="nav-link" href="/watchlist/3">Watchlist</a>
                         </li>
                         <li class="nav-item active">
                             <a class="nav-link" href="/search">
@@ -76,115 +74,50 @@
                 </div>
             </div>
         </nav>
-        <form action="" class="search-page-form fixed-top">
+        <form action="/search" method="GET" class="search-page-form fixed-top">
             <div class="search">
-              <span class="search-icon material-symbols-outlined">search</span>
-              <input class="search-input" type="search" placeholder="Search">
+                <span class="search-icon material-symbols-outlined">search</span>
+                <input class="search-input" type="search" name="title" placeholder="Search" id="search-bar">
             </div>
-          </form>
+        </form>
+        
     </div>
 
     <div class="content-container">
         <div class="row">
             <div class="container">
                 <div class="slider-watchlist">
-                    {{#films}}
-                    <button class="slider-item">
-                        <img class="img-slider" src={{image-url}} alt="film cover">
-                    </button>                    
-                    {{/films}}
+                    {{ #search }}
+                    <a class="slider-item" href="/film/{{ id }}">
+                        <img class="img-slider" src="{{ cover }}" alt="film cover">
+                    </a>
+                    {{ /search }}
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="container">
-                <div class="slider-watchlist">
-                    <button class="slider-item">
-                        <img class="img-slider" src="https://www.barbie-themovie.com/images/share.jpg">
-                    </button>
-                    <button class="slider-item">
-                        <img class="img-slider"
-                            src="https://klein-sites.s3.amazonaws.com/sites/53/2022/02/04144645/0702A17D-F9C0-4FEE-BED4-DDEEE83260B5.png">
-                    </button>
-                    <button class="slider-item">
-                        <img class="img-slider"
-                            src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiowsisUkr0FR_s-1GlkpWaryMazXnB1CPG8mVqnkX2_6K3DoQTIMZj81pWDROFPSoWLM5jb4Acd53VdS3J8uZE21vSxjWRduByWr8OHguNZlnoCczUouqp57CSO4XW2VqpsfpVJRxNCbUz/s1600/8+apellidos.jpg">
-                    </button>
-                    <button class="slider-item">
-                        <img class="img-slider" src="https://ntvb.tmsimg.com/assets/p19575003_b_h8_aa.jpg?w=960&h=540">
-                    </button>
-                    <button class="slider-item">
-                        <img class="img-slider" src="https://ntvb.tmsimg.com/assets/p10980706_v_h10_as.jpg?w=1280&h=720">
-                    </button>
-                    <button class="slider-item">
-                        <img class="img-slider" src="https://ntvb.tmsimg.com/assets/p12216968_v_h10_ai.jpg?w=960&h=540">
-                    </button>
-                </div>
-            </div>
-        </div>
-    
-        <div class="row">
-            <div class="container">
-                <div class="slider-watchlist">
-                    <button class="slider-item">
-                        <img class="img-slider" src="https://www.barbie-themovie.com/images/share.jpg">
-                    </button>
-                    <button class="slider-item">
-                        <img class="img-slider"
-                            src="https://klein-sites.s3.amazonaws.com/sites/53/2022/02/04144645/0702A17D-F9C0-4FEE-BED4-DDEEE83260B5.png">
-                    </button>
-                    <button class="slider-item">
-                        <img class="img-slider"
-                            src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiowsisUkr0FR_s-1GlkpWaryMazXnB1CPG8mVqnkX2_6K3DoQTIMZj81pWDROFPSoWLM5jb4Acd53VdS3J8uZE21vSxjWRduByWr8OHguNZlnoCczUouqp57CSO4XW2VqpsfpVJRxNCbUz/s1600/8+apellidos.jpg">
-                    </button>
-                    <button class="slider-item">
-                        <img class="img-slider" src="https://ntvb.tmsimg.com/assets/p19575003_b_h8_aa.jpg?w=960&h=540">
-                    </button>
-                    <button class="slider-item">
-                        <img class="img-slider" src="https://ntvb.tmsimg.com/assets/p10980706_v_h10_as.jpg?w=1280&h=720">
-                    </button>
-                    <button class="slider-item">
-                        <img class="img-slider" src="https://ntvb.tmsimg.com/assets/p12216968_v_h10_ai.jpg?w=960&h=540">
-                    </button>
-                </div>
-            </div>
-        </div>
-    
-        <div class="row">
-            <div class="container">
-                <div class="slider-watchlist">
-                    <button class="slider-item">
-                        <img class="img-slider" src="https://www.barbie-themovie.com/images/share.jpg">
-                    </button>
-                    <button class="slider-item">
-                        <img class="img-slider"
-                            src="https://klein-sites.s3.amazonaws.com/sites/53/2022/02/04144645/0702A17D-F9C0-4FEE-BED4-DDEEE83260B5.png">
-                    </button>
-                    <button class="slider-item">
-                        <img class="img-slider"
-                            src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiowsisUkr0FR_s-1GlkpWaryMazXnB1CPG8mVqnkX2_6K3DoQTIMZj81pWDROFPSoWLM5jb4Acd53VdS3J8uZE21vSxjWRduByWr8OHguNZlnoCczUouqp57CSO4XW2VqpsfpVJRxNCbUz/s1600/8+apellidos.jpg">
-                    </button>
-                    <button class="slider-item">
-                        <img class="img-slider" src="https://ntvb.tmsimg.com/assets/p19575003_b_h8_aa.jpg?w=960&h=540">
-                    </button>
-                    <button class="slider-item">
-                        <img class="img-slider" src="https://ntvb.tmsimg.com/assets/p10980706_v_h10_as.jpg?w=1280&h=720">
-                    </button>
-                    <button class="slider-item">
-                        <img class="img-slider" src="https://ntvb.tmsimg.com/assets/p12216968_v_h10_ai.jpg?w=960&h=540">
-                    </button>
-                </div>
-            </div>
-        </div>
+
 
     </div>
 
-    <footer class="bg-dark py-5 mt-5">
+    <footer class="bg-dark py-5 mt-5 fixed-bottom">
         <div class="conatainer text-light text-center">
             <p class="fw-bold display-5 mb-3 ">CineMatch</p>
             <small class="text-dark-50">&copy; Copyright by CineMatch.</small>
         </div>
     </footer>
+
+    <script>
+        document.getElementById('search-bar').addEventListener('keypress', function (event) {
+            if (event.key === 'Enter') {
+                event.preventDefault(); 
+                if (this.value.trim()) {
+                    this.form.submit(); 
+                } else {
+                    alert('Please enter a search term.');
+                }
+            }
+        });
+    </script>
 
 </body>
 

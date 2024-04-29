@@ -44,12 +44,9 @@
               </li>
               <li class="nav-item">
                 <a class="nav-link active" href="#">Movies</a>
-              </li>
+              </li>              
               <li class="nav-item">
-                <a class="nav-link" href="/tvseries">TV Series</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="/watchlist"> Watchlist</a>
+                <a class="nav-link" href="/watchlist/3"> Watchlist</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="/search">
@@ -108,7 +105,7 @@
 
   <div class="row">
     <div class="header">
-      <h3 class="title">Drama</h3>
+      <h3 class="title">Comedy</h3>
       <div class="progress-bar"></div>
     </div>
     <div class="container">
@@ -116,154 +113,17 @@
         <div class="text">&#8249;</div>
       </button>
       <div class="slider">
-        <button class="slider-item">
-          <img class="img-slider" src="https://ntvb.tmsimg.com/assets/p24439818_v_h10_aa.jpg?w=1280&h=720">
-        </button>
-        <button class="slider-item">
-          <img class="img-slider" src="https://ntvb.tmsimg.com/assets/p16645155_v_h8_ae.jpg?w=960&h=540">
-        </button>
-        <button class="slider-item">
-          <img class="img-slider" src="https://www.barbie-themovie.com/images/share.jpg">
-        </button>
-        <button class="slider-item">
-          <img class="img-slider"
-            src="https://klein-sites.s3.amazonaws.com/sites/53/2022/02/04144645/0702A17D-F9C0-4FEE-BED4-DDEEE83260B5.png">
-        </button>
-        <button class="slider-item">
-          <img class="img-slider"
-            src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiowsisUkr0FR_s-1GlkpWaryMazXnB1CPG8mVqnkX2_6K3DoQTIMZj81pWDROFPSoWLM5jb4Acd53VdS3J8uZE21vSxjWRduByWr8OHguNZlnoCczUouqp57CSO4XW2VqpsfpVJRxNCbUz/s1600/8+apellidos.jpg">
-        </button>
-        <button class="slider-item">
-          <img class="img-slider" src="https://ntvb.tmsimg.com/assets/p19575003_b_h8_aa.jpg?w=960&h=540">
-        </button>
-        <button class="slider-item">
-          <img class="img-slider" src="https://ntvb.tmsimg.com/assets/p10980706_v_h10_as.jpg?w=1280&h=720">
-        </button>
-        <button class="slider-item">
-          <img class="img-slider" src="https://ntvb.tmsimg.com/assets/p12216968_v_h10_ai.jpg?w=960&h=540">
-        </button>
-        <button class="slider-item">
-          <img class="img-slider" src="https://wallpapers.com/images/featured/peaky-blinders-mf0te5aaoy07nn99.jpg">
-        </button>
-        <button class="slider-item">
-          <img class="img-slider" src="https://ntvb.tmsimg.com/assets/p24765616_v_h8_ab.jpg?w=960&h=540">
-        </button>
-        <button class="slider-item">
-          <img class="img-slider" src="https://ntvb.tmsimg.com/assets/p26729000_b_h8_aa.jpg?w=960&h=540">
-        </button>
-        <button class="slider-item">
-          <img class="img-slider" src="https://ntvb.tmsimg.com/assets/p26702387_b_h10_aa.jpg?w=960&h=540">
-        </button>
+        {{#comedy}}
+        <a class="slider-item" href="/film/{{ id }}">
+          <img class="img-slider" src="{{ cover }}" alt="film cover">
+        </a>
+        {{/comedy}}
       </div>
       <button class="handle right-handle">
         <div class="text">&#8250;</div>
       </button>
     </div>
   </div>
-  <div class="row">
-    <div class="header">
-      <h3 class="title">Comedia</h3>
-      <div class="progress-bar"></div>
-    </div>
-    <div class="container">
-      <button class="handle left-handle">
-        <div class="text">&#8249;</div>
-      </button>
-      <div class="slider">
-        <button class="slider-item">
-          <img class="img-slider" src="https://ntvb.tmsimg.com/assets/p24439818_v_h10_aa.jpg?w=1280&h=720">
-        </button>
-        <button class="slider-item">
-          <img class="img-slider" src="https://ntvb.tmsimg.com/assets/p16645155_v_h8_ae.jpg?w=960&h=540">
-        </button>
-        <button class="slider-item">
-          <img class="img-slider" src="https://www.barbie-themovie.com/images/share.jpg">
-        </button>
-        <button class="slider-item">
-          <img class="img-slider"
-            src="https://klein-sites.s3.amazonaws.com/sites/53/2022/02/04144645/0702A17D-F9C0-4FEE-BED4-DDEEE83260B5.png">
-        </button>
-        <button class="slider-item">
-          <img class="img-slider"
-            src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiowsisUkr0FR_s-1GlkpWaryMazXnB1CPG8mVqnkX2_6K3DoQTIMZj81pWDROFPSoWLM5jb4Acd53VdS3J8uZE21vSxjWRduByWr8OHguNZlnoCczUouqp57CSO4XW2VqpsfpVJRxNCbUz/s1600/8+apellidos.jpg">
-        </button>
-        <button class="slider-item">
-          <img class="img-slider" src="https://ntvb.tmsimg.com/assets/p19575003_b_h8_aa.jpg?w=960&h=540">
-        </button>
-        <button class="slider-item">
-          <img class="img-slider" src="https://ntvb.tmsimg.com/assets/p10980706_v_h10_as.jpg?w=1280&h=720">
-        </button>
-        <button class="slider-item">
-          <img class="img-slider" src="https://ntvb.tmsimg.com/assets/p12216968_v_h10_ai.jpg?w=960&h=540">
-        </button>
-        <button class="slider-item">
-          <img class="img-slider" src="https://wallpapers.com/images/featured/peaky-blinders-mf0te5aaoy07nn99.jpg">
-        </button>
-        <button class="slider-item">
-          <img class="img-slider" src="https://ntvb.tmsimg.com/assets/p24765616_v_h8_ab.jpg?w=960&h=540">
-        </button>
-        <button class="slider-item">
-          <img class="img-slider" src="https://ntvb.tmsimg.com/assets/p26729000_b_h8_aa.jpg?w=960&h=540">
-        </button>
-        <button class="slider-item">
-          <img class="img-slider" src="https://ntvb.tmsimg.com/assets/p26702387_b_h10_aa.jpg?w=960&h=540">
-        </button>
-      </div>
-      <button class="handle right-handle">
-        <div class="text">&#8250;</div>
-      </button>
-    </div>
-  </div>
-  <div class="container">
-    <div class="row mb-2">
-      <div class="col-md-6">
-        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-          <div class="col-md-7 p-4 d-flex flex-column position-static">
-            <strong class="d-inline-block mb-2 text-primary">Action and Suspense</strong>
-            <h3 class="mb-0">The Beekeper</h3>
-            <div class="mb-1 pt-2 text-light">Apr 12</div>
-            <p class="card-text mb-auto pt-1">One man's brutal campaign for vengeance takes on national stakes after he
-              is
-              revealed to be a former operative of a powerful and clandestine organization known as "Beekeepers."</p>
-            <a href="film.html" class="icon-link gap-1 icon-link-hover stretched-link">
-              Continue reading
-              <svg class="bi">
-                <use xlink:href="#chevron-right" />
-              </svg>
-            </a>
-          </div>
-          <div class="col-auto col-md-5 d-none d-lg-block thumbnail ">
-            <img src="https://media.themoviedb.org/t/p/w500/A7EByudX0eOzlkQ2FIbogzyazm2.jpg" alt="The_Beekeeper">
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6">
-        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-          <div class="col-md-7 p-4 d-flex flex-column position-static">
-            <strong class="d-inline-block mb-2 text-success">Exciting Docu-Series</strong>
-            <h3 class="mb-0">Drive To Survive</h3>
-            <div class="mb-1 pt-2 text-light">Nov 11</div>
-            <p class="card-text mb-auto pt-1 fst-italic">"Drive to Survive offers more than simply frothy,
-              behind-the-scenes fun
-              about which teams can build the fastest cars. It provides viewers with opportunities to get to know the
-              drivers, choose favorite teams, and take sides in rivalries."</p>
-            <a href="film.html" class="icon-link gap-1 icon-link-hover stretched-link">
-              Continue reading
-              <svg class="bi">
-                <use xlink:href="#chevron-right" />
-              </svg>
-            </a>
-          </div>
-          <div class="col-md-5 d-none d-lg-block thumbnail ">
-            <img
-              src="https://sportal365images.com/process/smp-images-production/ringier.africa/21022024/82d493ef-fba2-4c34-9e63-fa7ae5633d4c.jpeg?"
-              alt="Deive_To_Survive">
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
   <div class="row">
     <div class="header">
       <h3 class="title">Suspense</h3>
@@ -274,44 +134,32 @@
         <div class="text">&#8249;</div>
       </button>
       <div class="slider">
-        <button class="slider-item">
-          <img class="img-slider" src="https://ntvb.tmsimg.com/assets/p24439818_v_h10_aa.jpg?w=1280&h=720">
-        </button>
-        <button class="slider-item">
-          <img class="img-slider" src="https://ntvb.tmsimg.com/assets/p16645155_v_h8_ae.jpg?w=960&h=540">
-        </button>
-        <button class="slider-item">
-          <img class="img-slider" src="https://www.barbie-themovie.com/images/share.jpg">
-        </button>
-        <button class="slider-item">
-          <img class="img-slider"
-            src="https://klein-sites.s3.amazonaws.com/sites/53/2022/02/04144645/0702A17D-F9C0-4FEE-BED4-DDEEE83260B5.png">
-        </button>
-        <button class="slider-item">
-          <img class="img-slider"
-            src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEiowsisUkr0FR_s-1GlkpWaryMazXnB1CPG8mVqnkX2_6K3DoQTIMZj81pWDROFPSoWLM5jb4Acd53VdS3J8uZE21vSxjWRduByWr8OHguNZlnoCczUouqp57CSO4XW2VqpsfpVJRxNCbUz/s1600/8+apellidos.jpg">
-        </button>
-        <button class="slider-item">
-          <img class="img-slider" src="https://ntvb.tmsimg.com/assets/p19575003_b_h8_aa.jpg?w=960&h=540">
-        </button>
-        <button class="slider-item">
-          <img class="img-slider" src="https://ntvb.tmsimg.com/assets/p10980706_v_h10_as.jpg?w=1280&h=720">
-        </button>
-        <button class="slider-item">
-          <img class="img-slider" src="https://ntvb.tmsimg.com/assets/p12216968_v_h10_ai.jpg?w=960&h=540">
-        </button>
-        <button class="slider-item">
-          <img class="img-slider" src="https://wallpapers.com/images/featured/peaky-blinders-mf0te5aaoy07nn99.jpg">
-        </button>
-        <button class="slider-item">
-          <img class="img-slider" src="https://ntvb.tmsimg.com/assets/p24765616_v_h8_ab.jpg?w=960&h=540">
-        </button>
-        <button class="slider-item">
-          <img class="img-slider" src="https://ntvb.tmsimg.com/assets/p26729000_b_h8_aa.jpg?w=960&h=540">
-        </button>
-        <button class="slider-item">
-          <img class="img-slider" src="https://ntvb.tmsimg.com/assets/p26702387_b_h10_aa.jpg?w=960&h=540">
-        </button>
+        {{#suspense}}
+        <a class="slider-item" href="/film/{{ id }}">
+          <img class="img-slider" src="{{ cover }}" alt="film cover">
+        </a>
+        {{/suspense}}
+      </div>
+      <button class="handle right-handle">
+        <div class="text">&#8250;</div>
+      </button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="header">
+      <h3 class="title">Drama</h3>
+      <div class="progress-bar"></div>
+    </div>
+    <div class="container">
+      <button class="handle left-handle">
+        <div class="text">&#8249;</div>
+      </button>
+      <div class="slider">
+        {{#drama}}
+        <a class="slider-item" href="/film/{{ id }}">
+          <img class="img-slider" src="{{ cover }}" alt="film cover">
+        </a>
+        {{/drama}}
       </div>
       <button class="handle right-handle">
         <div class="text">&#8250;</div>

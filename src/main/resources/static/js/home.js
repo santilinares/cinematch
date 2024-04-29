@@ -115,6 +115,8 @@ function throttle(cb, delay = 1000) {
   }
 }
 
-
+document.querySelector('.search-icon').addEventListener('click', function() {
+  document.querySelector('.search-page-form').submit();
+});
 
 

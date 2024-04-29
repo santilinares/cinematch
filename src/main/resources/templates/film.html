@@ -45,11 +45,9 @@
                         <li class="nav-item">
                             <a class="nav-link" href="/films">Movies</a>
                         </li>
+                        
                         <li class="nav-item">
-                            <a class="nav-link" href="/tvseries">TV Series</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/watchlist">Watchlist</a>
+                            <a class="nav-link" href="/watchlist/3">Watchlist</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="/search">
@@ -127,12 +125,12 @@
             button.addEventListener('click', function (event) {
                 event.preventDefault();
                 const filmId = this.id.replace('add-to-watchlist-', ''); // Extrae el ID de la película
-                addToWatchlist(filmId);
+                addToWatchlist(filmId, this);
             });
         });
 
-        function addToWatchlist(filmId) {
-            const userId = '52'; // Debes obtener el ID de usuario actual de alguna manera segura
+        function addToWatchlist(filmId, button) {
+            const userId = '3'; // Debes obtener el ID de usuario actual de alguna manera segura
             fetch(`/api/user/addfilm/${userId}/${filmId}`, {
                 method: 'PATCH',
                 headers: {
@@ -141,7 +139,8 @@
             })
                 .then(response => {
                     if (response.ok) {
-                        alert('Film added to Watchlist successfully!');
+                        button.textContent = 'Added to Watchlist';   
+                        button.classList.add('added-to-watchlist');                         
                     } else {
                         throw new Error('Failed to add film to Watchlist');
                     }

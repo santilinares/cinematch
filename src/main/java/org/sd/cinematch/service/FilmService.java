@@ -25,6 +25,12 @@ public class FilmService {
         return filmRepository.findByGenre(genre);
     }
 
+    public Film findByTitle(String title){
+        return filmRepository.findByTitle(title);
+    }
+
+
+
     public Film findById(final long id){
         Optional<Film> optionalPlatform = filmRepository.findById(id);
         if (optionalPlatform.isPresent()) {
