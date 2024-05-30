@@ -6,7 +6,7 @@
 
 :root {
   --handle-size: 3rem;
-  --img-gap: .25rem;
+  --img-gap: .5rem;
 }
 
 body {
@@ -22,6 +22,10 @@ body {
   overflow: hidden;
 }
 
+.iframe {
+  border-radius: 1rem;
+}
+
 .slider {
   --items-per-screen: 6;
   --slider-index: 0;
@@ -31,17 +35,42 @@ body {
   transition: transform 250ms ease-in-out;
 }
 
-.slider>img {
+.slider-watchlist {
+  --items-per-screen: 6;
+  --slider-index: 0;
+  display: flex;
+  margin-left: var(--handle-size);
+  margin-right: var(--handle-size);
+  margin-top: 1.75rem;
+}
+
+.slider-item {
   flex: 0 0 calc(100% / var(--items-per-screen));
   max-width: calc(100% / var(--items-per-screen));
-  aspect-ratio: 16/9;
   padding: var(--img-gap);
   border-radius: 1rem;
+  border: 0px transparent;
+  background-color: transparent;
+  transition: all 0.4s ease-in-out;
 }
+
+.img-slider {
+  max-width: 100%;
+  aspect-ratio: 16/9;
+  border-radius: 0.5rem;
+  transition: all 0.4s ease-in-out;
+}
+
+.slider-item:hover .img-slider {
+  transform: scale(1.08);
+  border: 3px solid;
+  border-color: whitesmoke
+}
+
 
 .handle {
   border: none;
-  border-radius: 1rem;
+  border-radius: 0.5rem;
   flex-grow: 0;
   flex-shrink: 0;
   width: var(--handle-size);
@@ -93,6 +122,13 @@ body {
   padding: 0 calc(var(--img-gap) * 2 + var(--handle-size));
 }
 
+.header-watchlist {
+  display: flex;
+  justify-content: center;
+  padding: 0 calc(var(--img-gap) * 2 + var(--handle-size));
+  margin-top: 90px;
+}
+
 .title {
   font-size: 2rem;
   margin: 0;
@@ -122,13 +158,20 @@ body {
   overflow: hidden;
   background-image: url(/images/bg_photo.jpg);
   background-repeat: no-repeat;
-  background-size: cover;    
+  background-size: cover;
+}
+
+.hero-watchlist {
+  width: 100vw;
+  height: 20vh;
+  position: relative;
+  overflow: hidden;
 }
 
 .overlay {
-  position:absolute;
-  top:0;
-  left:0;
+  position: absolute;
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
   background: rgba(12, 3, 51, 0.3);
@@ -137,12 +180,12 @@ body {
 
 .content {
   width: 100vw;
-  height:fit-content;
+  height: fit-content;
   position: relative;
   padding: 0;
   display: flex;
   flex-direction: column;
-  align-items:center;
+  align-items: center;
   justify-content: center;
 }
 
@@ -160,54 +203,128 @@ body {
   display: flex;
   justify-content: center;
   overflow: hidden;
-  margin: 0 var(--handle-size);   
+  margin: 0 var(--handle-size);
 }
 
-.platform-image {
+.btn-platform {
   flex: 0 0 20%;
   max-width: 20%;
   padding: 1em;
-  color: #3d3b3b;  
-  border: 0px;
-  border: 4px solid; /* Add a transparent border */
-  border-color: transparent;
-  transition: transform 1s, border 1s;
+  color: #3d3b3b;
+  border: 0px transparent;
   background-color: transparent;
 }
 
+.btn-platform :hover {
+  transform: scale(1.1);
+  border: 4px solid;
+  border-color: whitesmoke;
+}
 
-.platform-image>img{  
+.btn-platform>img {
   max-width: 100%;
   aspect-ratio: 16/9;
   border-radius: 0.5rem;
   box-shadow: 4px 4px 5px;
-} 
-
-.platform-image :hover {
-  transform: scale(1.1);   
-  border: 3px solid;
-  border-color: whitesmoke;
+  transition: all 0.4s ease-in-out;
 }
 
-.thumbnail{
+
+.thumbnail {
   max-width: 100%;
   height: auto;
 }
 
 .thumbnail>img {
-  position:relative;
-  top:0;
-  left:0;
+  position: relative;
+  top: 0;
+  left: 0;
   width: 100%;
   height: auto;
-  aspect-ratio: 2/3;  
+  aspect-ratio: 2/3;
   object-fit: cover;
 }
 
 .text-container {
   max-height: 100%;
-  overflow:hidden;
+  overflow: hidden;
 }
+
+.search-page-form {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  margin-top: 100px;
+}
+
+.search-form {
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  height: 90%;
+}
+
+.search {
+  --padding: 14px;
+
+  width: max-content;
+  display: flex;
+  justify-content: center;
+  padding: var(--padding);
+  border-radius: 1.25rem;
+  background: #f6f6f6;
+  width: 550px;
+  transition: background .25;
+}
+
+.search:focus-within {
+  background: #d3d1d1;
+}
+
+
+.search-input {
+  font-size: 16px;
+  color: #333333;
+  margin-left: var(--padding);
+  outline: none;
+  border: none;
+  background: transparent;
+  flex: 1;
+}
+
+.search-input::placeholder,
+.search-icon {
+  color: rgba(0, 0, 0, .5);
+}
+
+.hero-search {
+  width: 100vw;
+  height: 30vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.film-details {
+  margin-bottom: 4px;
+}
+
+.btn-home {
+  transition: all 0.4s;
+}
+
+.btn-home:hover {
+  transform: scale(1.1);
+}
+
+.added-to-watchlist {
+  background-color: #f8f9fa;
+  color:#1c1c1c
+}
+
+.added-to-watchlist:hover {
+  transform: none;
+}
+
 
 @media (max-width: 1000px) {
   .slider {

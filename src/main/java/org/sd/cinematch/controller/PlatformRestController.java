@@ -15,18 +15,17 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import org.sd.cinematch.model.Platform;
+import lombok.AllArgsConstructor;
+
+import org.sd.cinematch.entity.Platform;
 import org.sd.cinematch.service.PlatformService;
 
 @RestController
-@RequestMapping("/platform")
+@AllArgsConstructor
+@RequestMapping("/api/platform")
 public class PlatformRestController {
 
-    private PlatformService platforms;
-
-    public PlatformRestController(PlatformService plataforms) {
-        this.platforms = plataforms;
-    }
+    private final PlatformService platforms;
 
     @GetMapping("/")
     public Collection<Platform> getPlatform() {
@@ -34,7 +33,7 @@ public class PlatformRestController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Platform> getPlatform(@PathVariable long id) {
+    public ResponseEntity<Platform> getPlatform(@PathVariable final long id) {
         Platform platform = platforms.findById(id);
         if (platform != null) {
             return ResponseEntity.ok(platform);
@@ -43,8 +42,8 @@ public class PlatformRestController {
         }
     }
 
-    @PostMapping("/")
-    public ResponseEntity<Platform> createPlatform(@RequestBody Platform platform) {
+    @PostMapping("/createplatform")
+    public ResponseEntity<Platform> createPlatform(@RequestBody final Platform platform) {
         platforms.save(platform);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(platform.getId())
                 .toUri();
@@ -52,7 +51,7 @@ public class PlatformRestController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Platform> deletePlatform(@PathVariable long id) {
+    public ResponseEntity<Platform> deletePlatform(@PathVariable final long id) {
         Platform platform = platforms.findById(id);
         if (platform != null) {
             platforms.deleteById(id);
@@ -63,7 +62,8 @@ public class PlatformRestController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Platform> replacePlatform(@PathVariable long id, @RequestBody Platform newPlatform) {
+    public ResponseEntity<Platform> replacePlatform(@PathVariable final long id,
+            @RequestBody final Platform newPlatform) {
         Platform platform = platforms.findById(id);
         if (platform != null) {
             newPlatform.setId(id);
@@ -75,20 +75,18 @@ public class PlatformRestController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<Platform> updatePlatform(@PathVariable long id, @RequestBody Platform updatedPlatform) {
-        Platform platform = platforms.findById(id);
-        if (platform != null) {
-            if (updatedPlatform.getName() != null) {
-                platform.setName(updatedPlatform.getName());
+    public ResponseEntity<Platform> updatePlatform(@PathVariable long id, @RequestBody Platform updatePlatform) {
+        Platform existingPlatform = platforms.findById(id);
+        if (existingPlatform != null) {
+            if (updatePlatform.getName() != null) {
+                existingPlatform.setName(updatePlatform.getName());
             }
-            if (updatedPlatform.getFilms() != null) {
-                platform.setFilms(updatedPlatform.getFilms());
-            }
-            platforms.save(platform);
-            return ResponseEntity.ok(platform);
+            platforms.save(existingPlatform);
+            return ResponseEntity.ok(existingPlatform);
         } else {
             return ResponseEntity.notFound().build();
         }
     }
+
 
 }

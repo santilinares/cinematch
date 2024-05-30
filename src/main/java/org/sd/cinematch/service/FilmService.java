@@ -1,37 +1,55 @@
 package org.sd.cinematch.service;
 
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicLong;
-import java.util.Collection;
-import org.sd.cinematch.model.Film;
+import java.util.List;
+
+import org.sd.cinematch.entity.Film;
+import org.sd.cinematch.repository.FilmRepository;
 import org.springframework.stereotype.Service;
 
 @Service
 public class FilmService {
-    private ConcurrentMap<Long, Film> films = new ConcurrentHashMap<>();
+
+    private final FilmRepository filmRepository;
+    public FilmService(FilmRepository filmRepository) {
+        this.filmRepository = filmRepository;
+    }
     private AtomicLong nextId = new AtomicLong(1);
 
-    public FilmService(){}
-
-    public Collection<Film> findAll(){
-        return films.values();
+    public List<Film> findAll(){
+        return filmRepository.findAll();
+    }  
+    
+    public List<Film> findByGenre(String genre){
+        return filmRepository.findByGenre(genre);
     }
 
-    public Film findById(long id){
-        return films.get(id);
+    public Film findByTitle(String title){
+        return filmRepository.findByTitle(title);
+    }
+
+
+
+    public Film findById(final long id){
+        Optional<Film> optionalPlatform = filmRepository.findById(id);
+        if (optionalPlatform.isPresent()) {
+         return optionalPlatform.get();
+        } else {
+         throw new RuntimeException("Film not found");
+        }
     }
 
     public void save(Film film) {
-        if(film.getId() == null || film.getId() == 0) {
-            long id = nextId.getAndIncrement();
-            film.setId(id);            
-        }
 
-        this.films.put(film.getId(), film);
+        if (film.getId()== null || film.getId() == 0){
+            long id = nextId.getAndIncrement();
+            film.setId(id);
+        }
+        filmRepository.save(film);
     }
 
-    public void deleteById(long id){
-        this.films.remove(id);
+    public void deleteById(final long id){
+        filmRepository.deleteById(id);
     }
 }

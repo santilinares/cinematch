@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Create Film</title>
+    <title>Update Film</title>
     <link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -13,9 +13,6 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
-    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -36,9 +33,13 @@
                             <div class="brand-wrapper">
                                 <h2 class="login-card-title fw-bold mb-0">CineMatch</h2>
                             </div>
-                            <p class="login-card-description">Create a Film</p>
+                            <p class="login-card-description">Update a Film</p>
 
-                            <form id="create-film-form" action="/api/film/createfilm" method="post">
+                            <form action="/api/film/{id}" id="update-film-form">
+                                <div class="form-group">
+                                    <label for="id" class="sr-only">Id</label>
+                                    <input type="id" name="id" id="id" class="form-control" placeholder="Id">
+                                </div>
                                 <div class="form-group">
                                     <label for="title" class="sr-only">Title</label>
                                     <input type="title" name="title" id="title" class="form-control"
@@ -46,7 +47,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col form-group">
-                                        <label for="duration " class="sr-only">Duration</label>
+                                        <label for="duration" class="sr-only">Duration</label>
                                         <input type="duration" name="duration" id="duration" class="form-control"
                                             placeholder="Duration">
                                     </div>
@@ -87,12 +88,10 @@
                                         <option value="documentary">Documentary</option>
                                     </select>
                                 </div>
-                                <div class="row">
-                                    <div class="col form-group">
-                                        <label for="recommended-age" class="sr-only">Age limit</label>
-                                        <input type="recommended-age" name="recommended-age" id="recommended-age"
-                                            class="form-control" placeholder="Age limit">
-                                    </div>
+                                <div class="form-group">
+                                    <label for="recommended-age" class="sr-only">Age limit</label>
+                                    <input type="recommended-age" name="recommended-age" id="recommended-age"
+                                        class="form-control" placeholder="Age limit">
                                 </div>
                                 <div class="row">
                                     <div class="col form-group">
@@ -108,8 +107,8 @@
                                 </div>
 
                                 </p>
-                                <input name="create-film" id="create-film" class="btn btn-block login-btn mb-2"
-                                    type="submit" value="Create Film">
+                                <input name="update-film" id="update-film" class="btn btn-block login-btn mb-2"
+                                    type="button" value="Update Film">
                             </form>
                             <nav class="login-card-footer-nav">
                                 <a href="#!">Terms of use.</a>
@@ -121,49 +120,45 @@
             </div>
         </div>
     </main>
-
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <script>
-        document.getElementById("create-film-form").addEventListener("submit", function (event) {
-            event.preventDefault();
-            const formData = {
-                title: document.getElementById("title").value,
-                duration: document.getElementById("duration").value,
-                year: document.getElementById("year").value,
-                synopsis: document.getElementById("synopsis").value,
-                actors: document.getElementById("actors").value,
-                director: document.getElementById("director").value,
-                genre: document.getElementById("movie-genre").value,
-                recommendedAge: document.getElementById("recommended-age").value,
-                cover: document.getElementById("cover").value,
-                trailer: document.getElementById("trailer").value
+        document.getElementById('update-film').addEventListener('click', function () {
+            const id = document.getElementById('id').value;
+            const filmData = {
+                title: document.getElementById('title').value,
+                duration: parseInt(document.getElementById('duration').value),
+                year: parseInt(document.getElementById('year').value),
+                synopsis: document.getElementById('synopsis').value,
+                actors: document.getElementById('actors').value,
+                director: document.getElementById('director').value,
+                genre: document.getElementById('movie-genre').value,
+                recommendedAge: document.getElementById('recommended-age').value,
+                cover: document.getElementById('cover').value,
+                trailer: document.getElementById('trailer').value
             };
 
-            fetch('/api/film/createfilm', {
-                method: 'POST',
+            // Remove empty fields to avoid unwanted updates
+            Object.keys(filmData).forEach(key => filmData[key] === '' && delete filmData[key]);
+
+            fetch(`/api/film/${id}`, {
+                method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(formData)
+                body: JSON.stringify(filmData)
             })
-                .then(response => {
-                    if (response.ok) {
-                        return response.json();
-                    } else {
-                        throw new Error('Something went wrong');
-                    }
-                })
+                .then(response => response.json())
                 .then(data => {
-                    alert('Film created successfully!');
+                    alert('Film updated successfully!');
+                    console.log(data);
                     setTimeout(() => {
                         window.location.href = '/'; // Redirect to the home directory
                     });
                 })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('Failed to create film.');
-                });
+                .catch(error => console.error('Error:', error));
         });
-
     </script>
 
 </body>

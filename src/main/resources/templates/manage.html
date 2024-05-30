@@ -76,82 +76,53 @@
             </div>
         </nav>
     </div>
-    <div class="container">
-        {{#film}}
+    <div class="container-lg pe-5 ps-5">
         <div class="row mb-2 m-5">
-            <div class="col md-7">
-                <iframe class="iframe" width="560" height="315" src="{{ trailer }}" title="YouTube video player"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            <div class="col md-4 d-flex flex-column position-static align-items-center justify-content-center">
+                <h3 class="title mb-4">User</h3>
+                <a type="button" href="/createuser" class="btn btn-outline-light p-2 m-2 btn-home" aria-label="Home">Create
+                    User</a>
+                <a type="button" href="/deleteuser" class="btn btn-outline-light p-2 m-2 btn-home" aria-label="Home">Delete
+                    User</a>
+                <a type="button" href="/updateuser" class="btn btn-outline-light p-2 m-2 btn-home" aria-label="Home">Update
+                    User</a>
+                <a type="button" href="/replaceuser" class="btn btn-outline-light p-2 m-2 btn-home" aria-label="Home">Replace
+                    User</a>
             </div>
-            <div class="col md-5 p-2 pe-5 d-flex flex-column position-static">
-                <div class="row d-flex justify-content-center align-items-center">
-                    <div class="col md-7">
-                        <h3 id="film-title">{{ title }}</h3>
-                    </div>
-                    <div class="col md-5 d-flex justify-content-end">
-                        <a id="add-to-watchlist-{{film.id}}" href="#" class="btn btn-outline-light p-2 m-2 btn-home"
-                            aria-label="Home">Add to Watchlist</a>
-
-                    </div>
-                </div>
-                <p class="film-details" id="year">{{ year }}</p>
-                <p class="film-details" id="synopsis">{{ synopsis }}</p>
-                <div class="row d-flex justify-content-center align-items-center">
-                    <div class="col md-6">
-                        <p class="film-details" id="platform">Platform:</p>
-                        <p class="film-details" id="genre">Genre: {{ genre }}</p>
-                    </div>
-                    <div class="col md-6">
-                        <p class="film-details" id="actors">Cast: {{ actors }}</p>
-                        <p class="film-details" id="director">Director: {{ director }}</p>
-                    </div>
-                </div>
-
+            <div class="col md-4 d-flex flex-column position-static align-items-center justify-content-center">
+                <h3 class="title mb-4">Film</h3>
+                <a type="button" href="/createfilm" class="btn btn-outline-light p-2 m-2 btn-home" aria-label="Home">Create
+                    Film</a>
+                <a type="button" href="/deletefilm" class="btn btn-outline-light p-2 m-2 btn-home" aria-label="Home">Delete
+                    Film</a>
+                <a type="button" href="/updatefilm" class="btn btn-outline-light p-2 m-2 btn-home" aria-label="Home">Update
+                    Film</a>
+                <a type="button" href="/replacefilm" class="btn btn-outline-light p-2 m-2 btn-home" aria-label="Home">Replace
+                    Film</a>
+            </div>
+            <div class="col md-4 d-flex flex-column position-static align-items-center justify-content-center">
+                <h3 class="title mb-4">Platform</h3>
+                <a type="button" href="/createplatform" class="btn btn-outline-light p-2 m-2 btn-home" aria-label="Home">Create
+                    Platform</a>
+                <a type="button" href="/deleteplatform" class="btn btn-outline-light p-2 m-2 btn-home" aria-label="Home">Delete
+                    Platform</a>
+                <a type="button" href="/updateplatform" class="btn btn-outline-light p-2 m-2 btn-home" aria-label="Home">Update
+                    Platform</a>
+                <a type="button" href="/replaceplatform" class="btn btn-outline-light p-2 m-2 btn-home" aria-label="Home">Replace
+                    Platform</a>
             </div>
         </div>
-        {{/film}}
     </div>
 
     <footer class="bg-dark py-5 mt-5 fixed-bottom">
         <div class="conatainer text-light text-center">
             <p class="fw-bold display-5 mb-3 ">CineMatch</p>
-            <small class="text-dark-50">&copy; Copyright by CineMatch.</small>
+            <small class="text-dark-50">© Copyright by CineMatch.</small>
         </div>
     </footer>
-    <script>
-        // Suponiendo que tienes múltiples elementos de 'Add to Watchlist'
-        document.querySelectorAll('[id^="add-to-watchlist-"]').forEach(button => {
-            button.addEventListener('click', function (event) {
-                event.preventDefault();
-                const filmId = this.id.replace('add-to-watchlist-', ''); // Extrae el ID de la película
-                addToWatchlist(filmId, this);
-            });
-        });
 
-        function addToWatchlist(filmId, button) {
-            const userId = '3'; // Debes obtener el ID de usuario actual de alguna manera segura
-            fetch(`/api/user/addfilm/${userId}/${filmId}`, {
-                method: 'PATCH',
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            })
-                .then(response => {
-                    if (response.ok) {
-                        button.textContent = 'Added to Watchlist';   
-                        button.classList.add('added-to-watchlist');                         
-                    } else {
-                        throw new Error('Failed to add film to Watchlist');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('Failed to add film to Watchlist: ' + error.message);
-                });
-        }
 
-    </script>
+
 </body>
 
 </html>

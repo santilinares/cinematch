@@ -3,7 +3,9 @@ package org.sd.cinematch.controller;
 import java.net.URI;
 import java.util.Collection;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -14,20 +16,23 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import org.sd.cinematch.model.User;
+import lombok.AllArgsConstructor;
+
+import org.sd.cinematch.entity.Film;
+import org.sd.cinematch.entity.User;
+import org.sd.cinematch.service.FilmService;
 import org.sd.cinematch.service.UserService;
 
 @RestController
-@RequestMapping("/user")
+@AllArgsConstructor
+@RequestMapping("/api/user")
 public class UserRestController {
 
-    private UserService userService;
-
-    public UserRestController(UserService userService) {
-        this.userService = userService;
-    }
+    private final UserService userService;
+    private final FilmService filmService;
 
     @GetMapping("/")
     public ResponseEntity<Collection<User>> getUsers() {
@@ -36,7 +41,7 @@ public class UserRestController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable long id) {
+    public ResponseEntity<User> getUserById(@PathVariable final long id) {
         User user = userService.findById(id);
         if (user != null) {
             return ResponseEntity.ok(user);
@@ -45,19 +50,21 @@ public class UserRestController {
         }
     }
 
-    @GetMapping("/getuser")
-    public ResponseEntity<User> getUserByEmailAndPassword(@RequestParam String email,
-            @RequestParam String password) {
+    @PostMapping("/getuser")
+    public String getUserByEmailAndPassword(
+            @RequestParam String email,
+            @RequestParam String password, RedirectAttributes redirectAttributes) {
         User user = userService.findByEmailAndPassword(email, password);
         if (user != null) {
-            return ResponseEntity.ok(user);
+            return "home";
         } else {
-            return ResponseEntity.notFound().build();
+            return "login";
         }
+
     }
 
     @PostMapping("/createuser")
-    public ResponseEntity<User> createUser(User user) {
+    public ResponseEntity<User> createUser(@RequestBody final User user) {
         userService.save(user);
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(user.getId())
                 .toUri();
@@ -65,7 +72,7 @@ public class UserRestController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<User> deleteUser(@PathVariable long id) {
+    public ResponseEntity<User> deletePlatform(@PathVariable final long id) {
         User user = userService.findById(id);
         if (user != null) {
             userService.deleteById(id);
@@ -76,17 +83,16 @@ public class UserRestController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Object> replaceUserById(@PathVariable String id, @RequestBody User newUser) {
-        long userId = Long.parseLong(id);
-        User user = userService.findById(userId);
+    public ResponseEntity<Object> replaceUserById(@PathVariable Long id, @RequestBody User newUser) {
+        User user = userService.findById(id);
         if (user != null) {
-            newUser.setId(userId);
+            newUser.setId(id);
             userService.save(newUser);
-            return ResponseEntity.ok().body("Completed 200 OK. User with ID " + id + " has been replaced succesfully");
+            return ResponseEntity.ok(user);
         } else {
             return ResponseEntity.notFound().build();
         }
-    }    
+    }
 
     @PatchMapping("/{id}")
     public ResponseEntity<User> updateUser(@PathVariable long id, @RequestBody User updateUser) {
@@ -103,6 +109,32 @@ public class UserRestController {
             }
             userService.save(existingUser);
             return ResponseEntity.ok(existingUser);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
+
+    @PostMapping("/login")
+    public ResponseEntity<Void> login(
+            @RequestParam(name = "email") final String email,
+            @RequestParam(name = "password") final String password) {
+        userService.login(email, password);
+        return ResponseEntity.ok().build();
+    }
+
+    @Transactional
+    @PatchMapping("/addfilm/{userId}/{filmId}")
+    public ResponseEntity<User> addFilmToUserWatchlist(@PathVariable Long userId, @PathVariable Long filmId) {
+        User user = userService.findById(userId);
+        Film film = filmService.findById(filmId);
+        if (user != null && film != null) {
+            if (!user.getAddedFilms().contains(film)) {
+                user.getAddedFilms().add(film);
+                userService.save(user);
+                return ResponseEntity.ok().build();
+            } else {
+                return ResponseEntity.status(HttpStatus.ALREADY_REPORTED).build();
+            }
         } else {
             return ResponseEntity.notFound().build();
         }

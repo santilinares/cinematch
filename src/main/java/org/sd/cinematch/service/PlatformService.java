@@ -1,39 +1,45 @@
 package org.sd.cinematch.service;
 
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ConcurrentMap;
+import java.util.List;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicLong;
 
-import java.util.Collection;
-import org.sd.cinematch.model.Platform;
+import org.sd.cinematch.entity.Platform;
+import org.sd.cinematch.repository.PlatformRepository;
 import org.springframework.stereotype.Service;
 
-@Service
+@Service 
 public class PlatformService {
-    private ConcurrentMap<Long, Platform> platforms = new ConcurrentHashMap<>();
+
+    private final PlatformRepository platformRepository;
+    public PlatformService(PlatformRepository platformRepository) {
+        this.platformRepository = platformRepository;
+    }
     private AtomicLong nextId = new AtomicLong(1);
-
-    public PlatformService() {
+    
+    public List<Platform> findAll(){
+        return platformRepository.findAll();
     }
 
-    public Collection<Platform> findAll() {
-        return platforms.values();
-    }
-
-    public Platform findById(long id) {
-        return platforms.get(id);
+    public Platform findById(final long id){
+       Optional<Platform> optionalPlatform = platformRepository.findById(id);
+       if (optionalPlatform.isPresent()) {
+        return optionalPlatform.get();
+       } else {
+        throw new RuntimeException("Platform not found");
+       }
     }
 
     public void save(Platform platform) {
-        if (platform.getId() == null || platform.getId() == 0) {
+
+        if (platform.getId()== null || platform.getId() == 0){
             long id = nextId.getAndIncrement();
             platform.setId(id);
         }
-
-        this.platforms.put(platform.getId(), platform);
+        platformRepository.save(platform);
     }
 
-    public void deleteById(long id) {
-        this.platforms.remove(id);
+    public void deleteById(long id){
+        platformRepository.deleteById(id);
     }
-}
+ }
