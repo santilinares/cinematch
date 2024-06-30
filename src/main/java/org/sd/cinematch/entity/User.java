@@ -3,22 +3,52 @@ package org.sd.cinematch.entity;
 import java.util.List;
 
 import jakarta.persistence.*;
+import lombok.Getter;
 
-@Entity
-@Table(name = "db-user")
+@Getter
+@Entity(name = "User")
+@Table(
+        name = "user",
+        uniqueConstraints = {
+                @UniqueConstraint(name = "user_email_unique", columnNames = "email")
+        }
+)
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "id")
+    @SequenceGenerator(
+            name = "user_sequence",
+            sequenceName = "user_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "user_sequence"
+    )
+    @Column(
+            name = "id",
+            updatable = false
+    )
     private Long id;
 
-    @Column(name = "name")
+    @Column(
+            name = "name",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
     private String name;
 
-    @Column(name = "email")
+    @Column(
+            name = "email",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
     private String email;
 
-    @Column(name = "password")
+    @Column(
+            name = "password",
+            nullable = false,
+            columnDefinition = "VARCHAR(60)"
+    )
     private String password;
 
     /* Un usuario puede añadir varias peliculas */
@@ -37,40 +67,20 @@ public class User {
         this.password = password;
     }
 
-    public List<Film> getAddedFilms() {
-        return addedFilms;
-    }
-
     public void setAddedFilms(List<Film> addedFilms) {
         this.addedFilms = addedFilms;
-    }
-
-    public Long getId() {
-        return id;
     }
 
     public void setId(Long id) {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
 
-    public String getEmail() {
-        return email;
-    }
-
     public void setEmail(String email) {
         this.email = email;
-    }
-
-    public String getPassword() {
-        return password;
     }
 
     public void setPassword(String password) {
