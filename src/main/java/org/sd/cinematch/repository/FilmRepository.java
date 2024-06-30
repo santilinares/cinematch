@@ -5,12 +5,13 @@ import java.util.List;
 import org.sd.cinematch.entity.Film;
 import org.sd.cinematch.entity.Platform;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 public interface FilmRepository extends JpaRepository<Film, Long>{
-    Film findByTitle(String title);
+    Film findByTitle(String title);    
     List<Film> findByPlatform(Platform platform);
     List<Film> findByGenre(String genre);
     List<Film> findByYear(int year);
-    List<Film> findByActors(String actors);
+    List<Film> findByActors(String actors);    
 }
 
