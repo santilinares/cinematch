@@ -9,7 +9,7 @@ import lombok.*;
 import lombok.NoArgsConstructor;
 
 @Getter
-@Entity(name = "Student")
+@Entity(name = "Film")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor

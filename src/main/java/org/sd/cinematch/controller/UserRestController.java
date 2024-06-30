@@ -1,7 +1,9 @@
 package org.sd.cinematch.controller;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -69,6 +71,18 @@ public class UserRestController {
         URI location = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}").buildAndExpand(user.getId())
                 .toUri();
         return ResponseEntity.created(location).body(user);
+    }
+
+    @PostMapping("/createmultipleusers")
+    public ResponseEntity<List<User>> createMultipleUsers(@RequestBody List<User> usersList) {
+        List<User> savedUsers = new ArrayList<>();
+
+        for (User user : usersList) {
+            userService.save(user);
+            savedUsers.add(user);
+        }
+
+        return ResponseEntity.ok(savedUsers); // or any other appropriate status code and body
     }
 
     @DeleteMapping("/{id}")
