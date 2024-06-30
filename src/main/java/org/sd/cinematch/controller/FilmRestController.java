@@ -1,7 +1,9 @@
 package org.sd.cinematch.controller;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -50,6 +52,19 @@ public class FilmRestController {
                 .toUri();
         return ResponseEntity.created(location).body(film);
     }
+
+    @PostMapping("/createmultiplefilms")
+    public ResponseEntity<List<Film>> createFilms(@RequestBody List<Film> filmsList) {
+        List<Film> savedFilms = new ArrayList<>();
+
+        for (Film film : filmsList) {
+            films.save(film);            
+            savedFilms.add(film);
+        }
+
+        return ResponseEntity.created(null).body(savedFilms);
+    }
+
 
     @Transactional
     @DeleteMapping("/{id}")

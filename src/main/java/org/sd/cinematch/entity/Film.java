@@ -8,53 +8,100 @@ import jakarta.persistence.*;
 import lombok.*;
 import lombok.NoArgsConstructor;
 
-@Entity
+@Getter
+@Entity(name = "Student")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "db-film")
+@Table(
+        name = "film"
+)
 public class Film {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @SequenceGenerator(
+            name = "film_sequence",
+            sequenceName = "film_sequence",
+            allocationSize = 1
+    )
+    @GeneratedValue(
+            strategy = GenerationType.SEQUENCE,
+            generator = "film_sequence"
+    )
+    @Column(
+            name = "id",
+            updatable = false
+    )
     private Long id;
 
-    @Column(name = "titles")
+    @Column(
+            name = "title",
+            updatable = false,
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
     private String title;
 
-    @Column(name = "genres")
+    @Column(
+            name = "genre",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
     private String genre;
 
-    @Column(name = "synopsis")
+    @Column(
+            name = "synopsis",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
     private String synopsis;
 
-    @Column(name = "recommended_ages")
+    @Column(name = "recommended_age")
     private int recommendedAge;
 
-    @Column(name = "actors")
+    @Column(
+            name = "actors",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
     private String actors;
 
-    @Column(name = "director")
+    @Column(
+            name = "director",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
     private String director;
 
-    @Column(name = "durations")
+    @Column(name = "duration")
     private int duration;
 
-    @Column(name = "years")
+    @Column(name = "year")
     private int year;
 
-    @Column(name = "trailers")
+    @Column(
+            name = "trailer",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
     private String trailer;
 
-    @Column(name = "covers")
+    @Column(
+            name = "cover",
+            nullable = false,
+            columnDefinition = "TEXT"
+    )
     private String cover;
 
-    /* Una pelicula solo puede estar contenida en una plataforma */
-    @ManyToOne
-    @JoinColumn(name = "platform_id", referencedColumnName = "id")
+
+   @ManyToOne
     private Platform platform;
 
-    /* Una película puede ser añadida por varios usuarios */
+    @Getter
+    @Setter
+    @Transient
+    private String platformName;
+
     @ManyToMany(mappedBy = "addedFilms")
     @JsonIgnore
     private List<User> users;
@@ -68,97 +115,59 @@ public class Film {
     }
 
     public Film(String title, int duration, int year, String synopsis, String genre, String actors, String director,
-            int recommendedAge, String trailer, String cover) {
+                int recommendedAge, String trailer, String cover) {
         super();
-    }
-
-    public Long getId() {
-        return id;
     }
 
     public void setId(Long id) {
         this.id = id;
     }
 
-    public String getTitle() {
-        return title;
-    }
-
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public String getGenre() {
-        return genre;
     }
 
     public void setGenre(String genre) {
         this.genre = genre;
     }
 
-    public String getActors() {
-        return actors;
-    }
-
     public void setActors(String actors) {
         this.actors = actors;
-    }
-
-    public String getDirector() {
-        return director;
     }
 
     public void setDirector(String director) {
         this.director = director;
     }
 
-    public String getSynopsis() {
-        return synopsis;
-    }
-
     public void setSynopsis(String synopsis) {
         this.synopsis = synopsis;
-    }
-
-    public int getRecommendedAge() {
-        return recommendedAge;
     }
 
     public void setRecommendedAge(int recommendedAge) {
         this.recommendedAge = recommendedAge;
     }
 
-    public int getDuration() {
-        return duration;
-    }
-
     public void setDuration(int duration) {
         this.duration = duration;
-    }
-
-    public int getYear() {
-        return year;
     }
 
     public void setYear(int year) {
         this.year = year;
     }
 
-    public String getTrailer(){
-        return trailer;
-    }
-
-    public void setTrailer(){
+    public void setTrailer(String trailer) {
         this.trailer = trailer;
     }
 
-    public String getCover(){
-        return cover;
-    }
-
-    public void setCover(){
+    public void setCover(String cover) {
         this.cover = cover;
     }
+
+    public void setPlatform(Platform platform) {
+        this.platform = platform;
+    }
+
+
 
     @Override
     public String toString() {
@@ -182,57 +191,6 @@ public class Film {
                 return false;
         } else if (!id.equals(other.id))
             return false;
-        if (title == null) {
-            if (other.title != null)
-                return false;
-        } else if (!title.equals(other.title))
-            return false;
-        if (genre == null) {
-            if (other.genre != null)
-                return false;
-        } else if (!genre.equals(other.genre))
-            return false;
-        if (synopsis == null) {
-            if (other.synopsis != null)
-                return false;
-        } else if (!synopsis.equals(other.synopsis))
-            return false;
-        if (recommendedAge != other.recommendedAge)
-            return false;
-        if (actors == null) {
-            if (other.actors != null)
-                return false;
-        } else if (!actors.equals(other.actors))
-            return false;
-        if (director == null) {
-            if (other.director != null)
-                return false;
-        } else if (!director.equals(other.director))
-            return false;
-        if (duration != other.duration)
-            return false;
-        if (year != other.year)
-            return false;
-        if (trailer == null) {
-            if (other.trailer != null)
-                return false;
-        } else if (!trailer.equals(other.trailer))
-            return false;
-        if (cover == null) {
-            if (other.cover != null)
-                return false;
-        } else if (!cover.equals(other.cover))
-            return false;
-        if (platform == null) {
-            if (other.platform != null)
-                return false;
-        } else if (!platform.equals(other.platform))
-            return false;
-        if (users == null) {
-            if (other.users != null)
-                return false;
-        } else if (!users.equals(other.users))
-            return false;
         return true;
     }
 
@@ -241,18 +199,8 @@ public class Film {
         final int prime = 31;
         int result = 1;
         result = prime * result + ((id == null) ? 0 : id.hashCode());
-        result = prime * result + ((title == null) ? 0 : title.hashCode());
-        result = prime * result + ((genre == null) ? 0 : genre.hashCode());
-        result = prime * result + ((synopsis == null) ? 0 : synopsis.hashCode());
-        result = prime * result + recommendedAge;
-        result = prime * result + ((actors == null) ? 0 : actors.hashCode());
-        result = prime * result + ((director == null) ? 0 : director.hashCode());
-        result = prime * result + duration;
-        result = prime * result + year;
-        result = prime * result + ((trailer == null) ? 0 : trailer.hashCode());
-        result = prime * result + ((cover == null) ? 0 : cover.hashCode());
-        result = prime * result + ((platform == null) ? 0 : platform.hashCode());
-        result = prime * result + ((users == null) ? 0 : users.hashCode());
         return result;
     }
+
+
 }

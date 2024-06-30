@@ -49,6 +49,10 @@ public class FilmWebController {
 
         Film film = filmService.findById(id);
         if (film != null) {
+            // Set the platformName field
+            if (film.getPlatform() != null) {
+                film.setPlatformName(film.getPlatform().getName());
+            }
             model.addAttribute("film", film);
             return "film";
         } else

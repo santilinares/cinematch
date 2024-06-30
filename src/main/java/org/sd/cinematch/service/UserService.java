@@ -3,7 +3,6 @@ package org.sd.cinematch.service;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.concurrent.atomic.AtomicLong;
 
 import org.sd.cinematch.entity.User;
 import org.sd.cinematch.repository.UserRepository;
@@ -17,8 +16,6 @@ public class UserService {
     public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
     }
-
-    private AtomicLong nextId = new AtomicLong(1);
 
     public List<User> findAll(){
         return userRepository.findAll();
@@ -42,13 +39,8 @@ public class UserService {
         }
     }
 
-    public User save(User user) {
-        if (user.getId()== null || user.getId() == 0){
-            long id = nextId.getAndIncrement();
-            user.setId(id);
-        }
+    public void save(User user) {
         userRepository.save(user);
-        return user;
     }
 
     public void deleteById(long id){
